@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f7fa;
+    /* color: #112B3F; */
+    font-family: 'Alan Sans', sans-serif;
+}
+
+header #navbar {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #122A3F;
+
+    padding: 20px 20px;
+
+}
+
+header #navbar nav ul {
+    display: flex;
+    list-style: none;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #00b4d8;
+    animation: fadeIn 2s ease;
+
+}
+
+header #navbar h1 {
+    color: #FEFEFE;
+}
+
+#welcome-message {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#welcome-message h2 {
+    color: #112B3F;
+    font-size: 3.25rem;
+}
+
+#welcome-message span {
+    color: #1e7fca;
+    font-size: 3.25rem;
+}
+
+#welcome-message p {
+    color: #112B3F;
+    font-size: 1.55rem;
+    margin-top: 5px;
+}
+
+/* --- MELHORIAS PARA A SEÇÃO #gerenciar E CARDS --- */
+
+#gerenciar {
+    /* Layout: Flexbox responsivo */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os cards quebrem a linha */
+    gap: 30px; /* Espaço entre os cards */
+    padding: 40px 20px;
+    max-width: 1200px; /* Limite a largura para centralizar o bloco */
+    margin: 20px auto; /* Centraliza a seção na tela */
+}
+
+.section_gerenciar {
+    /* Estilo do Card */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px; /* Bordas mais suaves */
+    /* Sombra inspirada no tema: mais visível e profissional */
+    box-shadow: 0 6px 15px rgba(18, 42, 63, 0.1); 
+    flex: 1 1 280px; /* Cartão flexível com largura mínima de 280px */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #00b4d8; /* Adiciona um toque de cor do tema na lateral */
+}
+
+.section_gerenciar:hover {
+    transform: translateY(-8px); /* Efeito de elevação mais perceptível */
+    box-shadow: 0 10px 20px rgba(18, 42, 63, 0.15); /* Sombra mais intensa no hover */
+}
+
+.section_gerenciar h2 {
+    color: #112B3F;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o ícone e o texto */
+}
+
+/* Estilo para os ícones dentro dos cards */
+.card-icon {
+    font-size: 1.2em; 
+    margin-right: 10px;
+    color: #00b4d8; /* Cor de destaque para o ícone */
+}
+
+/* Estilo para o Botão (Link) */
+.section_gerenciar .button {
+    /* Mantém as cores do seu tema */
+    background-color: #122A3F;
+    color: white;
+    padding: 12px 25px; /* Botão maior e mais fácil de clicar */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block; /* Garante que o padding funcione */
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 15px; 
+}
+
+.section_gerenciar .button:hover {
+    background-color: #00b4d8; /* Cor de destaque */
+    transform: translateY(-2px);
+}
+
+/* --- Responsividade para Celulares --- */
+@media (max-width: 768px) {
+    #gerenciar {
+        gap: 20px;
+        padding: 20px 10px;
+    }
+
+    .section_gerenciar {
+        flex: 1 1 100%; /* Cada card ocupa a largura total em telas pequenas */
+        max-width: none;
+    }
+}   

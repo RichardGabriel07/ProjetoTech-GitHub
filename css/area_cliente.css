@@ -1,0 +1,165 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f7fa;
+    /* color: #112B3F; */
+    font-family: 'Alan Sans', sans-serif;
+}
+
+header #navbar {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #122A3F;
+
+    padding: 20px 20px;
+
+}
+
+header #navbar nav ul {
+    display: flex;
+    list-style: none;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #00b4d8;
+    animation: fadeIn 2s ease;
+
+}
+
+header #navbar h1 {
+    color: #FEFEFE;
+}
+#criar_conta {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#gratis {
+    display: flex;
+    flex-direction: column;
+    padding: 150px 100px 80px 60px;
+    gap: 20px;
+}
+
+section #gratis h2 {
+    font-size: 60px;
+    color: #122A3F;
+}
+
+section #gratis p {
+    display: block;
+    font-size: 20px;
+}
+
+section #gratis h2 span {
+    color: #2466a8;
+}
+
+section #right-side {
+    /* background-color: #00b4d8;    */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section #right-side img {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 50px 100px 0 0;
+    height: 400px;
+    width: 400px;
+}
+
+.cursos_disponiveis {
+    display: flex; /* Habilita o Flexbox */
+    flex-wrap: wrap; /* Permite que os blocos quebrem para a próxima linha em telas menores */
+    justify-content: space-around; /* Distribui os blocos uniformemente na linha */
+    gap: 20px; /* Adiciona espaçamento entre os blocos */
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo para cada bloco de "curso" */
+.curso {
+    /* Define uma largura base, mas permite que o Flexbox a ajuste */
+    width: 300px; 
+    
+    /* Garante que o item não encolha demais, mas permite crescer um pouco se houver espaço */
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.curso:hover {
+    transform: translateY(-5px); /* Efeito ao passar o mouse */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.curso h3 {
+    color: #122A3F;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.curso p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Estilo para o botão (link) */
+.curso .btn {
+    display: inline-block;
+    background-color: #3b74d4; /* Seu azul principal */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.curso .btn:hover {
+    background-color: #2c59a8;
+}
+
+/* ======================================= */
+/* 2. RESPONSIVIDADE (Quebra de Layout)    */
+/* ======================================= */
+
+/* Se a tela for pequena (ex: celular), empilha os blocos */
+@media (max-width: 768px) {
+    .cursos_disponiveis {
+        /* Garante que, em telas pequenas, eles fiquem empilhados verticalmente */
+        flex-direction: column; 
+        align-items: center; /* Centraliza os itens empilhados */
+    }
+
+    .curso {
+        width: 100%; /* Ocupa a largura total do contêiner */
+        max-width: 400px; /* Limita a largura máxima para não esticar demais */
+        margin-bottom: 20px; /* Adiciona espaço entre eles */
+    }
+}

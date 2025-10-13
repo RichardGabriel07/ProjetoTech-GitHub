@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f7fa;
+    /* color: #112B3F; */
+
+    font-family: 'Alan Sans', sans-serif;
+}
+
+header #navbar {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #122A3F;
+
+    padding: 20px 20px;
+
+}
+
+header #navbar nav ul {
+    display: flex;
+    list-style: none;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #00b4d8;
+    animation: fadeIn 2s ease;
+
+}
+
+header #navbar h1 {
+    color: #FEFEFE;
+}
+
+#criar_conta {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#left-side {
+    display: flex;
+    flex-direction: column;
+    padding: 150px 100px 80px 60px;
+    gap: 20px;
+}
+
+section #left-side h1 {
+    font-size: 60px;
+    color: #122A3F;
+}
+
+section #left-side p {
+    display: block;
+    font-size: 20px;
+}
+
+section #left-side h1 span {
+    color: #2466a8;
+}
+
+section #left-side a{
+    padding: 12px 25px;
+    text-align: center;
+    
+    border-radius: 10px;
+    background-color: #3168B9;
+
+    color: #FEFEFE;
+
+    text-decoration: none;
+    font-size: 18px;
+
+    transition: transform 0.3s, background 0.3s;
+    animation: fadeIn 2s ease;
+}
+
+section #right-side {
+    /* background-color: #00b4d8;    */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section #right-side img {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 50px 100px 0 0;
+    height: 400px;
+    width: 400px;
+}
+
+#section-cards {
+    padding: 40px 80px; /* Aumentei o padding para melhor espaçamento geral */
+    background-color: #f4f7fa;
+}
+
+#section-cards h1 {
+    text-align: center;
+    color: #3168B9;
+    margin-bottom: 30px;
+    font-size: 3.25em; /* Título maior */
+}
+
+/* Novo Container Flexível para os Cards */
+.cards-container { 
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards quebrem a linha */
+    justify-content: center; /* Centraliza os cards */
+    gap: 30px; /* Espaçamento entre os cards */
+    padding: 20px 0;
+}
+
+/* Estilo Aprimorado para os Cards Individuais */
+.cards {
+    width: 240px; /* Largura fixa para os cards em telas grandes */
+    
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px; /* Cantos arredondados */
+    padding: 30px;
+    text-align: justify;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para o hover */
+    cursor: pointer;
+}
+
+.cards:hover {
+    transform: translateY(-5px); /* Efeito de elevação sutil */
+    /* Sombra com a cor principal (azul) para destaque */
+    box-shadow: 0 8px 20px rgba(36, 102, 168, 0.2); 
+}
+
+.cards img {
+    height: 70px;
+    width: 70px;
+    margin-bottom: 15px;
+}
+
+.cards h3 {
+    color: #3168B9; /* Cor principal da sua ONG */
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.cards p {
+    color: #555;
+    line-height: 1.4;
+    height: 40px; /* Altura fixa para evitar quebra de layout */
+}
+
+.cards a{
+    text-decoration: none;
+}
+
+/* ------------------------------------------- */
+/* MEDIA QUERIES (Responsividade) */
+/* ------------------------------------------- */
+
+/* Para tablets e telas médias */
+@media (max-width: 1024px) {
+    #section-cards {
+        padding: 40px 20px;
+    }
+    /* Permite dois cards por linha em tablets */
+    .cards {
+        width: 45%; 
+        min-width: 250px;
+    }
+}
+
+/* Para celulares */
+@media (max-width: 600px) {
+    /* Força um card por linha em celulares */
+    .cards {
+        width: 100%; 
+    }
+}

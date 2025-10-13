@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f7fa;
+    /* color: #112B3F; */
+
+    font-family: 'Alan Sans', sans-serif;
+}
+
+header #navbar {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #122A3F;
+
+    padding: 20px 20px;
+
+}
+
+header #navbar nav ul {
+    display: flex;
+    list-style: none;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #00b4d8;
+    animation: fadeIn 2s ease;
+
+}
+
+header #navbar h1 {
+    color: #FEFEFE;
+}
+
+main{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+main #left-side-main{
+    display: flex;
+    flex-direction: column;
+    padding: 100px 80px;
+    gap: 20px;
+}
+
+main #left-side-main h1{
+    display: block;
+    font-size: 60px;
+}
+
+main #left-side-main p{
+    display: block;
+    font-size: 20px;
+}
+
+main #left-side-main .blue-label{
+    color: #2466a8;
+}
+
+main #left-side-main a{
+    padding: 12px 25px;
+    text-align: center;
+    
+    border-radius: 10px;
+    background-color: #3168B9;
+
+    color: #FEFEFE;
+
+    text-decoration: none;
+    font-size: 18px;
+
+    transition: transform 0.3s, background 0.3s;
+    animation: fadeIn 2s ease;
+}
+
+main #right-side-main{
+    /* background-color: #00b4d8;    */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main #right-side-main img{  
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 50px 100px 0 0;
+    height: 500px;
+    width: 500px;
+}
+
+#section-cards{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.cards {
+    flex: 0 0 45%;              /* ocupa 45% da largura → 2 por linha */
+    max-width: 600px;           /* limite opcional para não esticar muito */
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    text-wrap: initial;
+
+    transition: all .2s ease-in-out;
+}
+
+.cards:hover{
+    transform: scale(1.07);
+    box-shadow: 10px 80x 16px rgba(0,0,0,0.3);
+}
+
+#section-cards .cards img{
+    width: 90px;
+    height: 90px;
+    max-width: auto;
+    padding-bottom: 20px;
+}
+
+/* Responsivo: no celular fica 1 card por linha */
+@media (max-width: 768px) {
+    .cards {
+        flex: 0 0 100%;
+    }
+}
