@@ -1,4 +1,16 @@
-<!-- DEIXE A PAGINA ABERTA PARA NAO LOGADOS, DEPOIS DO USUARIO COMPLETAR TODO O FORMULARIO, QUANDO CLICAR NO BOTAO AVISE ELE QUE ELE NAO ESTA LOGADO E REDIRECIONE ELE PARA A PAGINA DE CADASTRO -->
+<?php
+
+session_start();
+
+if (!isset($_SESSION['id_usuario'])) {
+    header("Location: ../acessos/login.php");
+    exit();
+}
+
+$nomeInstrutor = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Cliente'; // Se o nome não existir, usa 'Cliente'
+$nomeInstrutor = ucfirst($nomeInstrutor); // Coloca a primeira letra em maiúscula
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,14 +61,14 @@
                     <label for="instrutor">Selecione o Instrutor:</label>
                     <select name="instrutor" id="instrutor" required>
                         <option value="" disabled selected>Selecione um Instrutor</option>
-                        <option value="rhuan">Rhuan</option>
+                        <option value="rhuan"><?php echo "<span>" . $nomeInstrutor . "</span>"?></option>
                         <option value="richard">Richard</option>
                         <option value="kayke">Kayke</option>
 
                     </select>
                     <br>
                 </div>
-                <div class="input_group">
+                <!-- <div class="input_group">
                     <label for="curso">Curso de Interesse:</label>
                     <select name="curso" id="curso" required>
                         <option value="" disabled selected>Selecione um curso</option>
@@ -67,7 +79,7 @@
                     </select>
                     <br>
                 </div>
-            </div>
+            </div> -->
 
             <div id="right_side_form">
                 <div class="input_group">

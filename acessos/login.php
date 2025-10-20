@@ -27,8 +27,8 @@ unset($_SESSION['mensagem']);
             <nav id="navbar-li">
                 <ul>
                     <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="cursos.html">Cursos </a></li>
-                    <li><a href="agendamento.html">Agendamento</a></li>
+                    <li><a href="../cursos.php">Cursos </a></li>
+                    <li><a href="../clientes/agendamento.php">Agendamento</a></li>
                     <li><a href="formar_turmas.html">Formar Turmas</a></li>
                     <li><a href="../contato.html">Contato</a></li>
                     <li><a href="../clientes/cadastrar_cliente.php">Cadastre-se</a></li>
