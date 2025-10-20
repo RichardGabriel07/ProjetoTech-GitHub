@@ -13,25 +13,23 @@ $mensagem = "";
 $sucesso = false;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $id_curso     = trim($_POST["curso"]);
     $data      = trim($_POST["data"]);
     $horario      = trim($_POST["hora"]);
     $local  = trim($_POST["endereco"]);
     $instrutor  = trim($_POST["instrutor"]);
 
      // 2. VALIDAR OS DADOS (básico, pode ser expandido)
-     if (empty($id_usuario)  || empty($id_curso) || empty($data) || empty($horario) || empty($local) || empty($instrutor)) {
+     if (empty($id_usuario) || empty($data) || empty($horario) || empty($local) || empty($instrutor)) {
         $mensagem = "Por favor, preencha todos os campos obrigatórios.";
     }
 
-    if ($id_usuario && $id_curso && $data && $horario && $local && $instrutor) {
+    if ($id_usuario && $data && $horario && $local && $instrutor) {
          // 3. INSERIR NO BANCO DE DADOS
         try {
-            $sql = "INSERT INTO agendamento (id_usuario, id_curso, data, horario, local, id_instrutor) 
-                    VALUES (:id_usuario, :id_curso, :data, :horario, :local, :id_instrutor)";
+            $sql = "INSERT INTO agendamento (id_usuario, data, horario, local, id_instrutor) 
+                    VALUES (:id_usuario, :data, :horario, :local, :id_instrutor)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':id_usuario', $id_usuario);
-            $stmt->bindParam(':id_curso', $id_curso);
             $stmt->bindParam(':data', $data);
             $stmt->bindParam(':horario', $horario);
             $stmt->bindParam(':local', $local);
@@ -39,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
             if ($stmt->execute()) {
-                $mensagem = "Cliente cadastrado com sucesso!";
+                $mensagem = "Agendamento cadastrado com sucesso!";
                 $sucesso = true;
             } else {
                 $mensagem = "Erro ao cadastrar: verifique os dados.";

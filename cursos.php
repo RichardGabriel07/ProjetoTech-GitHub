@@ -25,6 +25,8 @@
                     <li id="wilma"><a href="acessos/login.php" id="entrar">Entrar</a></li>
                 </ul>
             </nav>
+
+            <?php include("../ProjetoTech-GitHub/acessos/navbar_publico.php")?>
         </div>
     </header>
 
