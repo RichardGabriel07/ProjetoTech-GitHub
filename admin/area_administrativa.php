@@ -29,6 +29,8 @@
             </div>
         </header>
 
+                <h2 class="left-pad">Criar e Gerenciar Registros:</h2>
+
         <main id="gerenciar">
             <section class="section_gerenciar" id="instrutor">
                 <h2><i class="fas fa-chalkboard-teacher card-icon"></i> Gerenciar Instrutores</h2>
@@ -48,6 +50,29 @@
             <section class="section_gerenciar" id="agendamento">
                 <h2><i class="fas fa-calendar-alt card-icon"></i> Gerenciar Agendamentos</h2>
                 <a href="listar_e_editar_agendamentos.php" class="button">Listar e Editar Agendamentos</a>
+            </section>
+
+            <section class="section_gerenciar" id="turma">
+                <h2><i class="fas fa-calendar-alt card-icon"></i> Gerenciar Turmas</h2>
+                <a href="../admin/criar_listar_e_editar_turmas.php" class="button">Listar e Editar Turmas</a>
+            </section>
+        </main>
+                <h2 class="left-pad">Ver e Permitir Agendamentos, Cursos e Turmas:</h2>
+
+        <main id="gerenciar">
+            <section class="section_gerenciar" id="agendamento">
+                <h2><i class="fas fa-calendar-alt card-icon"></i> Ver e Permitir Agendamentos</h2>
+                <a href="gerenciar_agendamentos.php" class="button">Ver e Permitir Agendamentos</a>
+            </section>
+
+            <section class="section_gerenciar" id="curso">
+                <h2><i class="fas fa-book card-icon"></i> Ver e Permitir Cursos</h2>
+                <a href="gerenciar_cursos.php" class="button">Ver e Permitir Cursos</a>
+            </section>
+
+            <section class="section_gerenciar" id="turma">
+                <h2><i class="fas fa-users card-icon"></i> Ver e Permitir Turmas</h2>
+                <a href="gerenciar_turmas.php" class="button">Ver e Permitir Turmas</a>
             </section>
         </main>
     </body>

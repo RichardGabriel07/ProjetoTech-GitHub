@@ -33,7 +33,6 @@ $nomeCapitalized = ucfirst($nome); // Coloca a primeira letra em maiúscula
                     <li><a href="../clientes/agendamento.php">Agendamento</a></li>
                     <li><a href="formar_turmas.html">Formar Turmas</a></li>
                     <li><a href="../contato.html">Contato</a></li>
-                    <li><a href="../clientes/cadastrar_cliente.php">Cadastre-se</a></li>
                     <li id="wilma"><a href="../acessos/logout.php" id="sair">Sair</a></li>
                 </ul>
             </nav>
@@ -67,6 +66,16 @@ $nomeCapitalized = ucfirst($nome); // Coloca a primeira letra em maiúscula
                 <h3>Formar Turmas</h3>
                 <p>Participe de novas turmas e aprenda mais.</p>
                 <a href="formar_turmas.php" class="btn">Ver Turmas</a>
+            </div>
+            <div class="curso">
+                <h3>Ver Turmas</h3>
+                <p>Veja as turmas disponíveis para matrícula.</p>
+                <a href="ver_turmas.php" class="btn">Ver Turmas</a>
+            </div>
+            <div class="curso">
+                <h3>Ver Agendamento(s)</h3>
+                <p>Veja os agendamentos que você fez.</p>
+                <a href="ver_agendamentos.php" class="btn">Ver Agendamentos</a>
             </div>
         </div>
     </main>

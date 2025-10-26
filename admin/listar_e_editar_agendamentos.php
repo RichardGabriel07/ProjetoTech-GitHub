@@ -155,8 +155,7 @@ $agendamentos = $pdo->query($sql)->fetchAll();
                 <th>Hora</th>
                 <th>Endereço</th>
                 <th>ID Usuário</th>
-                <th>ID Curso</th>
-                <th>ID Instrutor</th>
+                <th>Nome Instrutor</th>
                 <th>Funções</th>
             </tr>
 
@@ -167,7 +166,6 @@ $agendamentos = $pdo->query($sql)->fetchAll();
                     <td> <?php echo $agendamento['horario']; ?></td>
                     <td> <?php echo $agendamento['local']; ?></td>
                     <td> <?php echo $agendamento['id_usuario']; ?></td>
-                    <td> <?php echo $agendamento['id_curso']; ?></td>
                     <td> <?php echo $agendamento['id_instrutor']; ?></td>
 
 
