@@ -1,165 +1,296 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #f4f7fa;
-    /* color: #112B3F; */
+    background-color: #f8f9fa;
     font-family: 'Alan Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
 
-header #navbar {
-    display: flex;
-    justify-content: space-between;
+/* Navbar antiga removida - agora usa navbar unificada */
 
-    background-color: #122A3F;
-
-    padding: 20px 20px;
-
-}
-
-header #navbar nav ul {
-    display: flex;
-    list-style: none;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 10px 20px;
-}
-
-header nav ul li a {
-    color: #fff;
-    margin-left: 20px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-header nav ul li a:hover {
-    color: #00b4d8;
-    animation: fadeIn 2s ease;
-
-}
-
-header #navbar h1 {
-    color: #FEFEFE;
-}
+/* Hero Section - Área do Cliente */
 #criar_conta {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    align-items: center;
+    min-height: 55vh;
+    position: relative;
+}
+
+#criar_conta::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+#criar_conta > * {
+    flex: 1;
+    min-width: 300px;
 }
 
 #gratis {
     display: flex;
     flex-direction: column;
-    padding: 150px 100px 80px 60px;
-    gap: 20px;
+    gap: 2rem;
 }
 
-section #gratis h2 {
-    font-size: 60px;
+#gratis h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.15;
     color: #122A3F;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease-out;
 }
 
-section #gratis p {
-    display: block;
-    font-size: 20px;
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-section #gratis h2 span {
-    color: #2466a8;
+#gratis h2 span {
+    color: #00b4d8;
+    background: linear-gradient(135deg, #00b4d8, #0096c7, #48cae4);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
 }
 
-section #right-side {
-    /* background-color: #00b4d8;    */
+@keyframes shimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+#gratis p {
+    font-size: 1.25rem;
+    color: #555;
+    line-height: 1.8;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+#right-side {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-section #right-side img {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    padding: 50px 100px 0 0;
-    height: 400px;
-    width: 400px;
-}
-
-.cursos_disponiveis {
-    display: flex; /* Habilita o Flexbox */
-    flex-wrap: wrap; /* Permite que os blocos quebrem para a próxima linha em telas menores */
-    justify-content: space-around; /* Distribui os blocos uniformemente na linha */
-    gap: 20px; /* Adiciona espaçamento entre os blocos */
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Estilo para cada bloco de "curso" */
-.curso {
-    /* Define uma largura base, mas permite que o Flexbox a ajuste */
-    width: 300px; 
-    
-    /* Garante que o item não encolha demais, mas permite crescer um pouco se houver espaço */
-    flex-grow: 1;
-    flex-shrink: 1;
-
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    text-align: center;
+#right-side img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 30px;
+    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.15));
+    animation: fadeIn 1s ease-out 0.3s both, float 6s ease-in-out 1s infinite;
     transition: transform 0.3s ease;
 }
 
+#right-side img:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Cards da Área do Cliente - Modernos */
+.cursos_disponiveis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.curso {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.curso::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #122A3F, #00b4d8);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.curso:hover::before {
+    transform: scaleX(1);
+}
+
 .curso:hover {
-    transform: translateY(-5px); /* Efeito ao passar o mouse */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(0, 180, 216, 0.25);
+    border-color: rgba(0, 180, 216, 0.4);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f9fc 100%);
 }
 
 .curso h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: #122A3F;
-    margin-bottom: 10px;
-    font-size: 1.5em;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.curso:hover h3 {
+    color: #00b4d8;
 }
 
 .curso p {
-    color: #555;
-    margin-bottom: 20px;
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
 }
 
-/* Estilo para o botão (link) */
 .curso .btn {
-    display: inline-block;
-    background-color: #3b74d4; /* Seu azul principal */
+    background: linear-gradient(135deg, #122A3F 0%, #1e3a5f 100%);
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 1rem 1.5rem;
     text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s ease;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.curso .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.curso .btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .curso .btn:hover {
-    background-color: #2c59a8;
+    background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 180, 216, 0.4);
 }
 
-/* ======================================= */
-/* 2. RESPONSIVIDADE (Quebra de Layout)    */
-/* ======================================= */
+.curso .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 180, 216, 0.3);
+}
 
-/* Se a tela for pequena (ex: celular), empilha os blocos */
-@media (max-width: 768px) {
-    .cursos_disponiveis {
-        /* Garante que, em telas pequenas, eles fiquem empilhados verticalmente */
-        flex-direction: column; 
-        align-items: center; /* Centraliza os itens empilhados */
+/* Responsividade Moderna */
+@media screen and (max-width: 768px) {
+    #criar_conta {
+        flex-direction: column !important;
+        gap: 2rem !important;
+        padding: 2rem 1rem !important;
+        text-align: center;
+        min-height: auto !important;
     }
+    
+    #criar_conta > * {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    #gratis {
+        width: 100% !important;
+    }
+    
+    #gratis h2 {
+        font-size: 2rem !important;
+    }
+    
+    #gratis p {
+        font-size: 1rem !important;
+    }
+    
+    #right-side {
+        width: 100% !important;
+    }
+    
+    #right-side img {
+        width: 80% !important;
+        max-width: 400px;
+    }
+    
+    .cursos_disponiveis {
+        grid-template-columns: 1fr !important;
+        padding: 2rem 1rem !important;
+        gap: 1.5rem !important;
+    }
+}
 
+@media screen and (max-width: 480px) {
+    #criar_conta {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    #gratis h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    #gratis p {
+        font-size: 0.95rem !important;
+    }
+    
+    .cursos_disponiveis {
+        grid-template-columns: 1fr !important;
+        padding: 1.5rem 1rem !important;
+        gap: 1rem !important;
+    }
+    
     .curso {
-        width: 100%; /* Ocupa a largura total do contêiner */
-        max-width: 400px; /* Limita a largura máxima para não esticar demais */
-        margin-bottom: 20px; /* Adiciona espaço entre eles */
+        padding: 1.5rem !important;
     }
 }

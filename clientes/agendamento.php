@@ -12,33 +12,22 @@ $nomeInstrutor = ucfirst($nomeInstrutor); // Coloca a primeira letra em maiúscu
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamento</title>
+    <title>Agendamento - ProjetoTech</title>
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/agendamento.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div id="navbar">
-            <h1>Projeto <span>Tech</span></h1>
-
-            <nav id="navbar-li">
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="../cursos.html">Cursos </a></li>
-                    <li><a href="agendamento.php">Agendamento</a></li>
-                    <li><a href="formar_turmas.html">Formar Turmas</a></li>
-                    <li><a href="../contato.html">Contato</a></li>
-                    <li><a href="../clientes/cadastrar_cliente.php">Cadastre-se</a></li>
-                    <li id="wilma"><a href="../acessos/logout.php" id="sair">Sair</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Navbar Unificada Responsiva -->
+    <?php include("../acessos/navbar_publico.php") ?>
 
     <section id="criar_conta">
         <div id="gratis">

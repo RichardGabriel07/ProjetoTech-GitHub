@@ -3,6 +3,6 @@ session_start();
 session_unset();
 session_destroy();
 // Redireciona para página inicial
-header("Location: ../index.html");
+header("Location: ../index.php");
 exit();
 ?>

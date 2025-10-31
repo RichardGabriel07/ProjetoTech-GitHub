@@ -124,77 +124,77 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turmas Disponíveis - ProjetoTech</title>
-    <link rel="stylesheet" href="../css/area_cliente.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/ver_dados.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div id="navbar">
-            <h1>ProjetoTech</h1>
-            <nav>
-                <ul>
-                    <li><a href="../clientes/area_cliente.php">Área do Cliente</a></li>
-                    <li><a href="../clientes/ver_agendamentos.php">Ver Agendamentos</a></li>
-                    <li><a href="../acessos/logout.php">Sair</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Navbar Unificada Responsiva -->
+    <?php include("../acessos/navbar_publico.php") ?>
 
-    <main style="padding: 20px;">
+    <main>
         <h2>Turmas Abertas para Matrícula</h2>
 
         <?php if ($mensagem): ?>
-            <p class="mensagem_alerta" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 10px; border-radius: 5px;">
+            <p class="mensagem_alerta">
                 <?= htmlspecialchars($mensagem) ?>
             </p>
         <?php endif; ?>
 
         <?php if (empty($turmas)): ?>
-            <p>Nenhuma turma disponível para matrícula no momento.</p>
+            <div class="mensagem_vazia">
+                <p>Nenhuma turma disponível para matrícula no momento.</p>
+            </div>
         <?php else: ?>
-            <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                <thead>
-                    <tr>
-                        <th>Turma</th>
-                        <th>Curso</th>
-                        <th>Instrutor</th>
-                        <th>Local</th>
-                        <th>Início</th>
-                        <th>Horário</th>
-                        <th>Vagas</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($turmas as $t):
-                        $ja_matriculado = in_array($t['id_turma'], $matriculas_aluno);
-                    ?>
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?= htmlspecialchars($t['nome_turma']) ?></td>
-                            <td><?= htmlspecialchars($t['nome_curso']) ?></td>
-                            <td><?= htmlspecialchars($t['instrutor_nome']) ?></td>
-                            <td><?= htmlspecialchars($t['local']) ?></td>
-                            <td><?= htmlspecialchars($t['data_inicio']) ?></td>
-                            <td><?= htmlspecialchars($t['horario']) ?></td>
-                            <td style="text-align: center; font-weight: bold;"><?= htmlspecialchars($t['vagas_disponiveis']) ?></td>
-
-                            <td style="text-align: center;">
-                                <?php if ($ja_matriculado): ?>
-                                    <button disabled style="background-color: #ccc; cursor: not-allowed;">Já Matriculado</button>
-                                <?php else: ?>
-                                    <form method="POST" style="display:inline;" onsubmit="return confirm('Confirmar matrícula em <?= htmlspecialchars($t['nome_turma']) ?>?');">
-                                        <input type="hidden" name="id_turma" value="<?= htmlspecialchars($t['id_turma']) ?>">
-                                        <input type="hidden" name="action" value="matricular">
-                                        <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">Matricular</button>
-                                    </form>
-                                <?php endif; ?>
-                            </td>
+                            <th>Turma</th>
+                            <th>Curso</th>
+                            <th>Instrutor</th>
+                            <th>Local</th>
+                            <th>Início</th>
+                            <th>Horário</th>
+                            <th>Vagas</th>
+                            <th>Ação</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($turmas as $t):
+                            $ja_matriculado = in_array($t['id_turma'], $matriculas_aluno);
+                        ?>
+                            <tr>
+                                <td data-label="Turma"><?= htmlspecialchars($t['nome_turma']) ?></td>
+                                <td data-label="Curso"><?= htmlspecialchars($t['nome_curso']) ?></td>
+                                <td data-label="Instrutor"><?= htmlspecialchars($t['instrutor_nome']) ?></td>
+                                <td data-label="Local"><?= htmlspecialchars($t['local']) ?></td>
+                                <td data-label="Início"><?= date('d/m/Y', strtotime($t['data_inicio'])) ?></td>
+                                <td data-label="Horário"><?= htmlspecialchars($t['horario']) ?></td>
+                                <td data-label="Vagas">
+                                    <span class="vagas-badge"><?= htmlspecialchars($t['vagas_disponiveis']) ?></span>
+                                </td>
+                                <td data-label="Ação">
+                                    <?php if ($ja_matriculado): ?>
+                                        <button disabled>Já Matriculado</button>
+                                    <?php else: ?>
+                                        <form method="POST" onsubmit="return confirm('Confirmar matrícula em <?= htmlspecialchars($t['nome_turma']) ?>?');">
+                                            <input type="hidden" name="id_turma" value="<?= htmlspecialchars($t['id_turma']) ?>">
+                                            <input type="hidden" name="action" value="matricular">
+                                            <button type="submit">Matricular</button>
+                                        </form>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         <?php endif; ?>
     </main>
 </body>

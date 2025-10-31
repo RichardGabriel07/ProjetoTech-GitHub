@@ -1,7 +1,4 @@
 <?php
-
-use Dom\Text;
-
 session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
@@ -17,27 +14,18 @@ $nomeCapitalized = ucfirst($nome); // Coloca a primeira letra em maiúscula
 
 <head>
     <meta charset="UTF-8">
-    <title>Área do Cliente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Cliente - ProjetoTech</title>
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/area_cliente.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <div id="navbar">
-            <h1>Projeto <span>Tech</span></h1>
-
-            <nav id="navbar-li">
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="../cursos.php">Cursos </a></li>
-                    <li><a href="../clientes/agendamento.php">Agendamento</a></li>
-                    <li><a href="formar_turmas.html">Formar Turmas</a></li>
-                    <li><a href="../contato.html">Contato</a></li>
-                    <li id="wilma"><a href="../acessos/logout.php" id="sair">Sair</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Navbar Unificada Responsiva -->
+    <?php include("../acessos/navbar_publico.php") ?>
 
     <section id="criar_conta">
         <div id="gratis">
@@ -55,25 +43,20 @@ $nomeCapitalized = ucfirst($nome); // Coloca a primeira letra em maiúscula
             <div class="curso">
                 <h3>Cursos Disponiveis</h3>
                 <p>Veja os cursos que nós temos.</p>
-                <a href="../cursos.html" class="btn">Ver Meus Cursos</a>
+                <a href="../cursos.php" class="btn">Ver Meus Cursos</a>
             </div>
             <div class="curso">
-                <h3>Agendar palestra</h3>
+                <h3>Agendar Palestra</h3>
                 <p>Agende uma palestra com um de nossos instrutores.</p>
-                <a href="../clientes/agendamento.php" class="btn">Agendar Agora</a>
+                <a href="agendamento.php" class="btn">Agendar Agora</a>
             </div>
             <div class="curso">
-                <h3>Formar Turmas</h3>
-                <p>Participe de novas turmas e aprenda mais.</p>
-                <a href="formar_turmas.php" class="btn">Ver Turmas</a>
-            </div>
-            <div class="curso">
-                <h3>Ver Turmas</h3>
+                <h3>Minhas Turmas</h3>
                 <p>Veja as turmas disponíveis para matrícula.</p>
                 <a href="ver_turmas.php" class="btn">Ver Turmas</a>
             </div>
             <div class="curso">
-                <h3>Ver Agendamento(s)</h3>
+                <h3>Meus Agendamentos</h3>
                 <p>Veja os agendamentos que você fez.</p>
                 <a href="ver_agendamentos.php" class="btn">Ver Agendamentos</a>
             </div>

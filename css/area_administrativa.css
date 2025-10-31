@@ -1,149 +1,221 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #f4f7fa;
-    /* color: #112B3F; */
+    background-color: #f8f9fa;
     font-family: 'Alan Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
 
-header #navbar {
-    display: flex;
-    justify-content: space-between;
+/* Navbar antiga removida - agora usa navbar unificada */
 
-    background-color: #122A3F;
-
-    padding: 20px 20px;
-
-}
-
-header #navbar nav ul {
-    display: flex;
-    list-style: none;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 10px 20px;
-}
-
-header nav ul li a {
-    color: #fff;
-    margin-left: 20px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-header nav ul li a:hover {
-    color: #00b4d8;
-    animation: fadeIn 2s ease;
-
-}
-
-header #navbar h1 {
-    color: #FEFEFE;
-}
-
+/* Welcome Message - Moderno e Elegante */
 #welcome-message {
+    background: linear-gradient(135deg, #122A3F 0%, #1e3a5f 100%);
+    color: white;
     text-align: center;
-    margin: 20px 0;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#welcome-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
 }
 
 #welcome-message h2 {
-    color: #112B3F;
-    font-size: 3.25rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 #welcome-message span {
-    color: #1e7fca;
-    font-size: 3.25rem;
+    color: #00b4d8;
+    font-weight: 700;
 }
 
 #welcome-message p {
-    color: #112B3F;
-    font-size: 1.55rem;
-    margin-top: 5px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* --- MELHORIAS PARA A SEÇÃO #gerenciar E CARDS --- */
+/* Títulos das Seções */
+.left-pad {
+    padding: 0 2rem;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #122A3F;
+    border-left: 4px solid #00b4d8;
+    padding-left: 1rem;
+}
 
+/* Layout dos Cards - Grid Moderno */
 #gerenciar {
-    /* Layout: Flexbox responsivo */
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Permite que os cards quebrem a linha */
-    gap: 30px; /* Espaço entre os cards */
-    padding: 40px 20px;
-    max-width: 1200px; /* Limite a largura para centralizar o bloco */
-    margin: 20px auto; /* Centraliza a seção na tela */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
+/* Cards Modernos */
 .section_gerenciar {
-    /* Estilo do Card */
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px; /* Bordas mais suaves */
-    /* Sombra inspirada no tema: mais visível e profissional */
-    box-shadow: 0 6px 15px rgba(18, 42, 63, 0.1); 
-    flex: 1 1 280px; /* Cartão flexível com largura mínima de 280px */
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-left: 5px solid #00b4d8; /* Adiciona um toque de cor do tema na lateral */
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 180, 216, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.section_gerenciar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00b4d8, #0096c7);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.section_gerenciar:hover::before {
+    transform: scaleX(1);
 }
 
 .section_gerenciar:hover {
-    transform: translateY(-8px); /* Efeito de elevação mais perceptível */
-    box-shadow: 0 10px 20px rgba(18, 42, 63, 0.15); /* Sombra mais intensa no hover */
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 180, 216, 0.15);
+    border-color: rgba(0, 180, 216, 0.2);
 }
 
+/* Títulos dos Cards */
 .section_gerenciar h2 {
-    color: #112B3F;
-    margin-bottom: 25px;
-    font-size: 1.5em;
+    color: #122A3F;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centraliza o ícone e o texto */
+    justify-content: flex-start;
+    gap: 0.75rem;
 }
 
-/* Estilo para os ícones dentro dos cards */
+/* Ícones dos Cards */
 .card-icon {
-    font-size: 1.2em; 
-    margin-right: 10px;
-    color: #00b4d8; /* Cor de destaque para o ícone */
+    font-size: 1.5rem;
+    color: #00b4d8;
+    background: rgba(0, 180, 216, 0.1);
+    padding: 0.75rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin: 0;
 }
 
-/* Estilo para o Botão (Link) */
+/* Botões Modernos */
 .section_gerenciar .button {
-    /* Mantém as cores do seu tema */
-    background-color: #122A3F;
+    background: linear-gradient(135deg, #122A3F 0%, #1e3a5f 100%);
     color: white;
-    padding: 12px 25px; /* Botão maior e mais fácil de clicar */
+    padding: 0.875rem 1.5rem;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    display: inline-block; /* Garante que o padding funcione */
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 15px; 
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    margin-top: 1.5rem;
+    width: 100%;
+    border: none;
+    cursor: pointer;
 }
 
 .section_gerenciar .button:hover {
-    background-color: #00b4d8; /* Cor de destaque */
+    background: linear-gradient(135deg, #00b4d8 0%, #0096c7 100%);
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 180, 216, 0.3);
 }
 
-/* --- Responsividade para Celulares --- */
-@media (max-width: 768px) {
+.section_gerenciar .button:active {
+    transform: translateY(0);
+}
+
+/* Responsividade Moderna */
+@media screen and (max-width: 768px) {
+    #welcome-message {
+        padding: 2rem 1rem !important;
+    }
+    
+    #welcome-message h2 {
+        font-size: 2rem !important;
+    }
+    
     #gerenciar {
-        gap: 20px;
-        padding: 20px 10px;
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 1rem !important;
     }
-
+    
     .section_gerenciar {
-        flex: 1 1 100%; /* Cada card ocupa a largura total em telas pequenas */
-        max-width: none;
+        padding: 1.5rem !important;
     }
-}   
+    
+    .left-pad {
+        padding: 0 1rem !important;
+        margin: 1.5rem 0 1rem 0 !important;
+        font-size: 1.25rem !important;
+    }
+}
 
-.left-pad{
-    padding-left: 90px;
+@media screen and (max-width: 480px) {
+    #welcome-message h2 {
+        font-size: 1.75rem !important;
+    }
+    
+    #welcome-message p {
+        font-size: 1rem !important;
+    }
+    
+    .section_gerenciar h2 {
+        font-size: 1.1rem !important;
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .card-icon {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1.25rem !important;
+    }
 }

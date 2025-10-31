@@ -1,3 +1,10 @@
+<?php
+// Inicia a sessão no início do arquivo
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProjetoTech</title>
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,30 +20,15 @@
 </head>
 
 <body>
-    <header>
-        <div id="navbar">
-            <h1>Projeto <span>Tech</span></h1>
-
-            <nav id="navbar-li">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="cursos.php">Cursos </a></li>
-                    <li><a href="clientes/agendamento.php">Agendamento</a></li>
-                    <li><a href="formar_turmas.html">Formar Turmas</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                    <li><a href="clientes/cadastrar_cliente.php">Cadastre-se</a></li>
-                    <li id="wilma"><a href="acessos/login.php" id="entrar">Entrar</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Navbar Unificada Responsiva -->
+    <?php include("acessos/navbar_publico.php") ?>
 
     <main>
         <div id="left-side-main">
             <h1>Aprenda <span class="blue-label">Programação <br></span> e habilidades de <br> <span class="blue-label">
                     Computação</span></h1>
             <p>Oferecemos cursos gratuitos de Programação,<br> Informática Básica, Bancos de Dados e <br> Photoshop</p>
-            <a href="cursos.html">Comece Agora</a>
+            <a href="cursos.php">Comece Agora</a>
 
         </div>
 

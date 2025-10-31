@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <script>
         alert("<?= $mensagem ?>");
         <?php if ($sucesso): ?>
-            window.location.href = "../index.html";
+            window.location.href = "../index.php";
         <?php else: ?>
             window.history.back(); // Volta para o formulário em caso de erro 
         <?php endif; ?>

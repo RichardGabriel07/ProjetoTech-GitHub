@@ -112,7 +112,7 @@ $turmas = $pdo->query($sql)->fetchAll();
             <h1>Projeto <span>Tech</span></h1>
             <nav id="navbar-li">
                 <ul>
-                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../index.php">Início</a></li>
                     <li><a href="../cursos.php">Cursos</a></li>
                     <li><a href="agendamento.php">Agendamento</a></li>
                     <li><a href="ver_turmas.php">Turmas Disponíveis</a></li>

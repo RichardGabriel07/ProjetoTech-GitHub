@@ -63,68 +63,67 @@ try {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Agendamentos - ProjetoTech</title>
-    <link rel="stylesheet" href="../css/area_cliente.css"> 
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/ver_dados.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div id="navbar">
-            <h1>ProjetoTech</h1>
-            <nav>
-                <ul>
-                    <li><a href="../clientes/area_cliente.php">Área cliente</a></li>
-                    <li><a href="../clientes/ver_turmas.php">Minhas Turmas</a></li>
-                    <li><a href="../acessos/logout.php">Sair</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Navbar Unificada Responsiva -->
+    <?php include("../acessos/navbar_publico.php") ?>
 
-    <main style="padding: 20px;">
+    <main>
         <h2>Meus Agendamentos</h2>
         
         <?php if ($mensagem): ?>
-            <p class="mensagem_alerta" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 10px; border-radius: 5px;">
+            <p class="mensagem_alerta">
                 <?= htmlspecialchars($mensagem) ?>
             </p>
         <?php endif; ?>
 
         <?php if (empty($agendamentos)): ?>
-            <p>Você não possui agendamentos cadastrados.</p>
+            <div class="mensagem_vazia">
+                <p>Você não possui agendamentos cadastrados.</p>
+            </div>
         <?php else: ?>
-            <table border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Instrutor</th>
-                        <th>Data</th>
-                        <th>Horário</th>
-                        <th>Local</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($agendamentos as $a): ?>
+            <div class="table-container">
+                <table>
+                    <thead>
                         <tr>
-                            <td><?= htmlspecialchars($a['id_agendamento']) ?></td>
-                            <td><?= htmlspecialchars(isset($a['nome_instrutor']) ? $a['nome_instrutor'] : 'N/A') ?></td> 
-                            <td><?= htmlspecialchars($a['data']) ?></td>
-                            <td><?= htmlspecialchars($a['horario']) ?></td>
-                            <td><?= htmlspecialchars($a['local']) ?></td>
-                            <td>
-                                <?php 
-                                    $cor_status = 'gray';
-                                    if ($a['status'] === 'Confirmado') $cor_status = 'green';
-                                    if ($a['status'] === 'Cancelado') $cor_status = 'red';
-                                ?>
-                                <strong style="color: <?= $cor_status; ?>;">
-                                    <?= htmlspecialchars($a['status']) ?>
-                                </strong>
-                            </td>
+                            <th>ID</th>
+                            <th>Instrutor</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Local</th>
+                            <th>Status</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($agendamentos as $a): ?>
+                            <tr>
+                                <td data-label="ID"><?= htmlspecialchars($a['id_agendamento']) ?></td>
+                                <td data-label="Instrutor"><?= htmlspecialchars(isset($a['nome_instrutor']) ? $a['nome_instrutor'] : 'N/A') ?></td>
+                                <td data-label="Data"><?= date('d/m/Y', strtotime($a['data'])) ?></td>
+                                <td data-label="Horário"><?= htmlspecialchars($a['horario']) ?></td>
+                                <td data-label="Local"><?= htmlspecialchars($a['local']) ?></td>
+                                <td data-label="Status">
+                                    <?php 
+                                        $status_class = 'status-pendente';
+                                        if ($a['status'] === 'Confirmado') $status_class = 'status-confirmado';
+                                        if ($a['status'] === 'Cancelado') $status_class = 'status-cancelado';
+                                    ?>
+                                    <span class="status-badge <?= $status_class ?>">
+                                        <?= htmlspecialchars($a['status']) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         <?php endif; ?>
     </main>
 </body>

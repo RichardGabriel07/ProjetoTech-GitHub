@@ -40,7 +40,7 @@ if (
             $stmt->bindParam(':descricao', $descricao);
 
             if ($stmt->execute()) {
-                $mensagem = "Instrutor cadastrado com sucesso!";
+                $mensagem = "Curso cadastrado com sucesso!";
                 $sucesso = true;
 
                 // CORREÇÃO PRG (Já existia, mas aqui está a confirmação)
