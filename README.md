@@ -1,8 +1,6 @@
-📘 ProjetoTech-GitHub
+# 📘 ProjetoTech-GitHub
+**Capacitando Comunidades Através da Educação e Inclusão Tecnológica**
 
-Capacitando Comunidades Através da Educação e Inclusão Tecnológica
-
-🏷️ Badges
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-005E86?style=for-the-badge&logo=mysql&logoColor=white)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
@@ -11,107 +9,136 @@ Capacitando Comunidades Através da Educação e Inclusão Tecnológica
 ![Status](https://img.shields.io/badge/STATUS-EM%20DESENVOLVIMENTO-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/LICENSE-NOT_DEFINED-lightgrey?style=for-the-badge)
 
-📑 Sumário
+---
 
-Visão Geral
+## 📑 Sumário
+- [Visão Geral](#-visão-geral)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Funcionalidades Principais](#-funcionalidades-principais)
+- [Prévia do Projeto](#-prévia-do-projeto)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Instalação](#-instalação)
+- [Uso](#-uso)
+- [Status do Desenvolvimento](#️-status-do-desenvolvimento)
+- [Contribuidores](#-contribuidores)
+- [Licença](#-licença)
 
-Tecnologias Utilizadas
+---
 
-Funcionalidades Principais
+## 🔎 Visão Geral
 
-Prévia do Projeto
+**ProjetoTech-GitHub** é uma plataforma educacional em desenvolvimento, construída em **PHP**, voltada para uma **ONG** que promove **alfabetização tecnológica** e **inclusão digital** em comunidades carentes.
 
-Estrutura do Projeto
+A aplicação foi pensada para **escalar facilmente**, **garantir segurança** e permitir **expansão futura**, tornando-se a principal ferramenta de gestão de ensino da instituição.
 
-Status do Desenvolvimento
+### 🎯 Objetivo
+Oferecer um sistema completo de ensino com **cursos online** e **turmas presenciais**, integrando gestão, acompanhamento de alunos e controle administrativo.
 
-🔎 Visão Geral
+---
 
-ProjetoTech-GitHub é uma plataforma educacional em desenvolvimento, construída em PHP, dedicada a uma ONG com a missão de promover a alfabetização tecnológica e a inclusão digital em comunidades carentes.
+## 🧪 Tecnologias Utilizadas
 
-A plataforma oferece duas modalidades essenciais de ensino:
+- **PHP (Vanilla/Procedural)**  
+- **PDO** – Conexão segura com MySQL  
+- **MySQL** – Banco de dados relacional  
+- **HTML5 / CSS3 / JavaScript** – Interface e interação com o usuário  
+- **Arquitetura modular** – Facilita manutenção e expansão do sistema  
 
-✅ Cursos Online
+---
 
-Aulas modulares
+## 🛠️ Funcionalidades Principais
 
-Vídeos
+### 🔧 Gestão Administrativa
+- Painel completo para gerenciar:
+  - Cursos  
+  - Módulos  
+  - Aulas  
+  - Usuários  
+  - Instrutores  
+  - Turmas  
 
-PDFs
+### 🚀 Matrícula e Progresso
+- Matrícula em cursos gratuitos  
+- Rastreamento de progresso  
+- (Futuro) Emissão automática de certificados  
 
-Acompanhamento de progresso
+### 🔒 Autenticação Segura
+- Login e Logout  
+- Controle de acesso por perfil (**Admin / Usuário**)  
 
-✅ Turmas Presenciais
+### 🌐 Interface Responsiva
+- Design moderno, intuitivo e adaptado para dispositivos móveis  
 
-Gestão de agendamentos
+### 🧩 Arquitetura Modular
+- Permite integração de novos recursos sem afetar o núcleo do sistema  
 
-Instrutores
+---
 
-Localização de turmas
+## 🖼️ Prévia do Projeto
+*(Adicione aqui prints da interface ou gifs demonstrando o uso do sistema, caso disponíveis.)*  
 
-O sistema está sendo projetado para oferecer escalabilidade, segurança e facilidade de expansão futura, tornando-se a principal ferramenta de gestão educacional da ONG.
+---
 
-🧪 Tecnologias Utilizadas
-
-PHP (Vanilla/Procedural)
-
-PDO (para conexão segura com MySQL)
-
-HTML5 / CSS3 / JavaScript
-
-MySQL
-
-Arquitetura modular
-
-🛠️ Funcionalidades Principais
-🔧 Gestão Administrativa
-
-Painel completo para gerenciar:
-
-Cursos
-
-Módulos
-
-Aulas
-
-Usuários
-
-Instrutores
-
-Turmas
-
-🚀 Matrícula e Progresso
-
-Matrícula em cursos gratuitos
-
-Rastreamento de progresso
-
-Futura emissão automática de certificados
-
-🔒 Autenticação Segura
-
-Login
-
-Logout
-
-Controle de acesso por perfil (Admin / Usuário)
-
-🌐 Interface Responsiva
-
-Design dinâmico, moderno e amigável para dispositivos móveis.
-
-🧩 Arquitetura Modular
-
-Pensada para facilitar a integração de novas features.
-
-📂 Estrutura do Projeto
+## 📂 Estrutura do Projeto
+```
 acessos/        -> Páginas de login, logout e registro  
 admin/          -> Área administrativa (CRUD de cursos, módulos, turmas, etc.)  
 clientes/       -> Área do aluno (cursos, aulas, agendamentos, etc.)  
 php/            -> Processamentos internos e conexões (ex: conexao.php)  
 assets/         -> Imagens, CSS, JavaScript  
+```
 
-⚠️ Status do Desenvolvimento
+---
 
-O sistema está em desenvolvimento ativo.
-Novas funcionalidades, melhorias de UX/UI e otimizações estão sendo implementadas constantemente.
+## ⚙️ Instalação
+
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/seu-usuario/ProjetoTech-GitHub.git
+   ```
+2. **Configure o ambiente local**
+   - Instale o [XAMPP](https://www.apachefriends.org/) ou similar  
+   - Copie o projeto para a pasta `htdocs/`
+3. **Crie o banco de dados**
+   - No phpMyAdmin, crie um banco chamado `projetotech`
+   - Importe o arquivo `.sql` (se disponível)
+4. **Configure a conexão**
+   - Edite `php/conexao.php` com suas credenciais do banco:
+     ```php
+     $pdo = new PDO("mysql:host=localhost;dbname=projetotech", "usuario", "senha");
+     ```
+
+---
+
+## 💻 Uso
+1. Acesse no navegador:
+   ```
+   http://localhost/ProjetoTech-GitHub/
+   ```
+2. Faça login como **Admin** para acessar o painel administrativo  
+3. Usuários podem:
+   - Visualizar cursos
+   - Se matricular
+   - Acompanhar progresso
+
+---
+
+## ⚠️ Status do Desenvolvimento
+O sistema está **em desenvolvimento ativo**.  
+Novas funcionalidades, melhorias de UX/UI e otimizações estão sendo adicionadas constantemente.
+
+---
+
+## 🤝 Contribuidores
+- **Equipe ProjetoTech**
+  - Desenvolvedores voluntários
+  - Instrutores da ONG
+  - Colaboradores da comunidade
+
+Quer contribuir? Envie um *pull request* ou abra uma *issue* com sugestões e melhorias!
+
+---
+
+## 📜 Licença
+📌 *Licença ainda não definida.*  
+Recomenda-se definir uma licença (ex: MIT, GPLv3 ou Creative Commons) para garantir direitos de uso e contribuição.
