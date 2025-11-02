@@ -43,7 +43,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <br>
                 <div class="form-group">
                     <label for="email">E-mail: </label>
-                    <input type="text" name="email" id="email" required placeholder="exemplo@gmail.com">
+                    <input type="email" name="email" id="email" required placeholder="exemplo@gmail.com">
                 </div>
                 <br>
                 <div class="form-group">
@@ -57,7 +57,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 </div>
                 <br>
 
-                <button type="submit" class="submit">Enviar Messagem</button>
+                <button type="submit" class="submit">Enviar Mensagem</button>
             </form>
         </div>
 

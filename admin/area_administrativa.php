@@ -36,12 +36,6 @@
                 <h2><i class="fas fa-book card-icon"></i> Gerenciar Cursos</h2>
                 <a href="listar_e_editar_cursos.php" class="button">Listar e Editar Cursos</a>
             </section>
-            </section>
-
-            <section class="section_gerenciar" id="curso">
-                <h2><i class="fas fa-book card-icon"></i> Gerenciar Cursos</h2>
-                <a href="listar_e_editar_cursos.php" class="button">Listar e Editar Cursos</a>
-            </section>
 
             <section class="section_gerenciar" id="aluno">
                 <h2><i class="fas fa-users card-icon"></i> Gerenciar Alunos</h2>
@@ -68,7 +62,7 @@
 
             <section class="section_gerenciar" id="curso">
                 <h2><i class="fas fa-book card-icon"></i> Ver e Permitir Cursos</h2>
-                <a href="gerenciar_cursos.php" class="button">Ver e Permitir Cursos</a>
+                <a href="gerenciar_matriculas.php" class="button">Ver e Permitir Cursos</a>
             </section>
 
             <section class="section_gerenciar" id="turma">

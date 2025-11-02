@@ -34,16 +34,16 @@ $nomeCapitalized = ucfirst($nome); // Coloca a primeira letra em maiúscula
         </div>
 
         <div id="right-side">
-            <img src="../asstes/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
+            <img src="../assets/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
         </div>
     </section>
 
     <main id="main_area_cliente">
         <div class="cursos_disponiveis">
             <div class="curso">
-                <h3>Cursos Disponiveis</h3>
-                <p>Veja os cursos que nós temos.</p>
-                <a href="../cursos.php" class="btn">Ver Meus Cursos</a>
+                <h3>Cursos Online</h3>
+                <p>Acesse seus cursos online e continue aprendendo.</p>
+                <a href="../curso_online/cursos_online.php" class="btn">Ver Cursos Online</a>
             </div>
             <div class="curso">
                 <h3>Agendar Palestra</h3>

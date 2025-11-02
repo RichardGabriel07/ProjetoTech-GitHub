@@ -28,37 +28,37 @@ if (session_status() == PHP_SESSION_NONE) {
             <h1>Aprenda <span class="blue-label">Programação <br></span> e habilidades de <br> <span class="blue-label">
                     Computação</span></h1>
             <p>Oferecemos cursos gratuitos de Programação,<br> Informática Básica, Bancos de Dados e <br> Photoshop</p>
-            <a href="cursos.php">Comece Agora</a>
+            <a href="curso_online/cursos_online.php">Comece Agora</a>
 
         </div>
 
         <div id="right-side-main">
-            <img src="asstes/imagens/chatgpt_image_projeto_tech_womam-removebg-preview.png"
+            <img src="assets/imagens/chatgpt_image_projeto_tech_womam-removebg-preview.png"
                 alt="girl in the computer using softwares">
         </div>
     </main>
 
     <section id="section-cards">
     <div class="cards">
-        <img src="asstes/imagens/code.png" alt="ícone de programação">
+        <img src="assets/imagens/code.png" alt="ícone de programação">
         <h3>Programação</h3>
         <p>Aprenda a escrever códigos usando <br> linguagens de programação</p>
     </div>
 
     <div class="cards">
-        <img src="asstes/imagens/monitor.png" alt="ícone de informática básica">
+        <img src="assets/imagens/monitor.png" alt="ícone de informática básica">
         <h3>Informática Básica</h3>
         <p>Domine conceitos essenciais de <br> computação e uso de softwares</p>
     </div>
 
     <div class="cards">
-        <img src="asstes/imagens/database.png" alt="ícone de banco de dados">
+        <img src="assets/imagens/database.png" alt="ícone de banco de dados">
         <h3>Bancos de Dados</h3>
         <p>Aprenda a organizar, consultar e <br> gerenciar informações em bancos de dados</p>
     </div>
 
     <div class="cards">
-        <img src="asstes/imagens/photoshop.png" alt="ícone de Photoshop">
+        <img src="assets/imagens/photoshop.png" alt="ícone de Photoshop">
         <h3>Photoshop</h3>
         <p>Domine ferramentas de edição <br> de imagens e design gráfico</p>
     </div>

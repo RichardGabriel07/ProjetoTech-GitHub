@@ -21,7 +21,7 @@ $base_path = '';
 $current_dir = dirname($_SERVER['PHP_SELF']);
 
 // Se estiver em subdiretórios, ajusta o caminho base
-if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes') !== false || strpos($current_dir, '/acessos') !== false) {
+if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes') !== false || strpos($current_dir, '/acessos') !== false || strpos($current_dir, '/curso_online') !== false) {
     $base_path = '../';
 }
 

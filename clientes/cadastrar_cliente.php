@@ -32,7 +32,7 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
 
         <div id="right-side">
-            <img src="../asstes/imagens/chatgpt_image_projeto_tech_womam-removebg-preview.png" alt="Imagem de cadastro">
+            <img src="../assets/imagens/chatgpt_image_projeto_tech_womam-removebg-preview.png" alt="Imagem de cadastro">
         </div>
     </section>
 

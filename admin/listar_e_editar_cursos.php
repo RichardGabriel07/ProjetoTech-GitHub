@@ -128,7 +128,7 @@ $cursos = $pdo->query($sql)->fetchAll();
         </div>
 
         <div id="right-side">
-            <img src="../asstes/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
+            <img src="../assets/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
         </div>
     </section>
 
@@ -152,16 +152,40 @@ $cursos = $pdo->query($sql)->fetchAll();
                     <td> <?php echo $curso['nome_curso']; ?></td>
                     <td> <?php echo $curso['descricao']; ?></td>
                     <td> <?php echo $curso['duracao']; ?></td>
-                    <td><button onclick="editContact('<?php echo $curso['id_curso']; ?>', '<?php echo $curso['nome_curso']; ?>', '<?php echo $curso['duracao']; ?>', '<?php echo $curso['descricao']; ?>')">Editar</button>
-                        <form method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir o curso <?php echo $curso['nome_curso']; ?>?');">
+<td>
+    <!-- Botão EDITAR CURSO -->
+    <button 
+        onclick="editContact(
+            '<?php echo $curso['id_curso']; ?>', 
+            '<?php echo $curso['nome_curso']; ?>', 
+            '<?php echo $curso['duracao']; ?>', 
+            '<?php echo $curso['descricao']; ?>'
+        )">
+        Editar
+    </button>
 
-                            <input type="hidden" name="id_curso" value="<?php echo $curso['id_curso']; ?>">
+    <!-- EXCLUIR CURSO -->
+    <form method="POST" style="display:inline;" 
+        onsubmit="return confirm('Tem certeza que deseja excluir o curso <?php echo $curso['nome_curso']; ?>?');">
 
-                            <input type="hidden" name="action" value="excluir">
+        <input type="hidden" name="id_curso" value="<?php echo $curso['id_curso']; ?>">
+        <input type="hidden" name="action" value="excluir">
 
-                            <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">Excluir</button>
-                        </form>
-                    </td>
+        <button type="submit" 
+            style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+            Excluir
+        </button>
+    </form>
+
+    <!-- ✅ NOVO: GERENCIAR MÓDULOS -->
+    <a href="modulo_admin.php?id_curso=<?php echo $curso['id_curso']; ?>">
+        <button 
+            style="background-color: #0d6efd; color:white; border:none; padding:5px 10px; cursor:pointer; margin-left:5px;">
+            Módulos
+        </button>
+    </a>
+</td>
+
                 </tr>
             <?php endforeach; ?>
         </table>

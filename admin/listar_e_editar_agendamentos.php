@@ -139,11 +139,11 @@ $agendamentos = $pdo->query($sql)->fetchAll();
         </div>
 
         <div id="right-side">
-            <img src="../asstes/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
+            <img src="../assets/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
         </div>
     </section>
 
-    <?php include 'includes/formluario_agendamento.php'; ?>
+    <?php include 'includes/formulario_agendamento.php'; ?>
 
     <section id="box_formulario_cadastro">
         <h2>Listar e Editar Agendamentos:</h2>
@@ -212,7 +212,7 @@ $agendamentos = $pdo->query($sql)->fetchAll();
             document.getElementById('hora').value = horario; // Recebe HH:mm:ss
 
             // 4. Campo de Endereço/Local (Corrigindo o erro de Null da linha 161)
-            // O ID correto é 'endereco' (conforme seu formluario_agendamento.php)
+            // O ID correto é 'endereco' (conforme seu formulario_agendamento.php)
             document.getElementById('endereco').value = local;
 
             // 5. Botão de Submit (Se 'btn_submit' for o erro "null", este corrige)

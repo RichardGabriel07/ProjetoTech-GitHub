@@ -131,7 +131,7 @@ $usuarios = $pdo->query($sql)->fetchAll();
         </div>
 
         <div id="right-side">
-            <img src="../asstes/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
+            <img src="../assets/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
         </div>
     </section>
 

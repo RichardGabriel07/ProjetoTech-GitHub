@@ -3,12 +3,14 @@ session_start();
 include '../php/conexao.php'; // Sua conexão PDO
 
 // Verifica se o usuário está logado
-if (!isset($_SESSION['id_usuario'])) {
-    header("Location: ../acessos/login.php");
-    exit();
-}
+// if (!isset($_SESSION['id_usuario'])) {
+//     header("Location: ../acessos/login.php");
+//     exit();
+// }
 
-$id_usuario = $_SESSION['id_usuario'];
+$usuario_logado = isset($_SESSION['id_usuario']);
+
+$id_usuario = isset($_SESSION['id_usuario']) ? $_SESSION['id_usuario'] : null;
 $mensagem = '';
 
 // ----------------------------------------------------
@@ -116,7 +118,6 @@ $stmt_matriculas = $pdo->prepare($sql_matriculas);
 $stmt_matriculas->execute([$id_usuario]);
 $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna apenas um array de id_turma
 
-
 ?>
 
 <!DOCTYPE html>
@@ -131,6 +132,15 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
+    <style>
+        button a {
+            text-decoration: none;
+            color: white;
+        }
+        button a:hover {
+            color: #0096c7;
+        }
+    </style>
 </head>
 
 <body>
@@ -180,13 +190,18 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
                                     <span class="vagas-badge"><?= htmlspecialchars($t['vagas_disponiveis']) ?></span>
                                 </td>
                                 <td data-label="Ação">
-                                    <?php if ($ja_matriculado): ?>
+                                    <?php if (!$usuario_logado): ?>
+                                        <!-- Visitante: botão leva pro login -->
+                                        <a href="../acessos/login.php"><button>🔒 Fazer Login</button></a>
+
+                                    <?php elseif ($ja_matriculado): ?>
+                                        <!-- Já matriculado: botão desabilitado -->
                                         <button disabled>Já Matriculado</button>
+
                                     <?php else: ?>
-                                        <form method="POST" onsubmit="return confirm('Confirmar matrícula em <?= htmlspecialchars($t['nome_turma']) ?>?');">
-                                            <input type="hidden" name="id_turma" value="<?= htmlspecialchars($t['id_turma']) ?>">
-                                            <input type="hidden" name="action" value="matricular">
-                                            <button type="submit">Matricular</button>
+                                        <!-- Logado e não matriculado: pode matricular -->
+                                        <form method="POST">
+                                            <button>Matricular</button>
                                         </form>
                                     <?php endif; ?>
                                 </td>
