@@ -1,38 +1,29 @@
+<?php
+// Inicia a sessão no início do arquivo
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
-<html lang="pt-br"> <!-- Define o idioma da página como português do Brasil -->
+<html lang="pt-br">
 
 <head>
-    <!-- Identifica a página no navegador e definições para o documento -->
-
-        <!-- Define a codificação de caracteres como UTF-8, suportando acentuação e dispositivos móveis -->
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Crie sua conta </title> <!-- Título da aba do navegador -->
-        <link rel="stylesheet" href="../css/cadastrar_cliente.css">
-        <script src="../js/script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se - ProjetoTech</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/cadastrar_cliente.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
+    <script src="../js/script.js" defer></script>
 </head>
 
 <body>
-    <header>
-        <div id="navbar">
-            <h1>Projeto <span>Tech</span></h1>
-
-            <nav id="navbar-li">
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="cursos.html">Cursos </a></li>
-                    <li><a href="agendamento.html">Agendamento</a></li>
-                    <li><a href="formar_turmas.html">Formar Turmas</a></li>
-                    <li><a href="../contato.html">Contato</a></li>
-                    <li><a href="./cadastrar_cliente.php">Cadastre-se</a></li>
-                    <li id="wilma"><a href="../acessos/login.php" id="entrar">Entrar</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Navbar Unificada Responsiva -->
+    <?php include("../acessos/navbar_publico.php") ?>
 
     <section id="criar_conta">
         <div id="gratis">
@@ -41,7 +32,7 @@
         </div>
 
         <div id="right-side">
-            <img src="../asstes/imagens/chatgpt_image_projeto_tech_womam-removebg-preview.png" alt="Imagem de cadastro">
+            <img src="../assets/imagens/chatgpt_image_projeto_tech_womam-removebg-preview.png" alt="Imagem de cadastro">
         </div>
     </section>
 
@@ -49,7 +40,7 @@
     <main id="box_formulario_cadastro">
         <h2>Crie sua conta</h2>
 
-        <form method="POST" action="../clientes/salvar_cliente.php" class="formulario">
+        <form method="POST" action="salvar_cliente.php" class="formulario">
             <!-- Campos do formulário -->
              <div class="input_group">
             <label for="nome">Nome:</label>

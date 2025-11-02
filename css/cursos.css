@@ -1,192 +1,247 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #f4f7fa;
-    /* color: #112B3F; */
-
+    background-color: #f8f9fa;
     font-family: 'Alan Sans', sans-serif;
+    color: #333;
+    line-height: 1.6;
 }
 
-header #navbar {
-    display: flex;
-    justify-content: space-between;
+/* Navbar antiga removida - agora usa navbar unificada */
 
-    background-color: #122A3F;
-
-    padding: 20px 20px;
-
-}
-
-header #navbar nav ul {
-    display: flex;
-    list-style: none;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 10px 20px;
-}
-
-header nav ul li a {
-    color: #fff;
-    margin-left: 20px;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-header nav ul li a:hover {
-    color: #00b4d8;
-    animation: fadeIn 2s ease;
-
-}
-
-header #navbar h1 {
-    color: #FEFEFE;
-}
-
+/* Hero Section - Cursos */
 #criar_conta {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    align-items: center;
+    min-height: 60vh;
+}
+
+#criar_conta > * {
+    flex: 1;
+    min-width: 300px;
 }
 
 #left-side {
     display: flex;
     flex-direction: column;
-    padding: 150px 100px 80px 60px;
-    gap: 20px;
+    gap: 2rem;
 }
 
-section #left-side h1 {
-    font-size: 60px;
+#left-side h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
     color: #122A3F;
+    margin-bottom: 1rem;
 }
 
-section #left-side p {
-    display: block;
-    font-size: 20px;
+#left-side h1 span {
+    color: #00b4d8;
+    background: linear-gradient(135deg, #00b4d8, #0096c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-section #left-side h1 span {
-    color: #2466a8;
+#left-side p {
+    font-size: 1.25rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
-section #left-side a{
-    padding: 12px 25px;
-    text-align: center;
-    
-    border-radius: 10px;
-    background-color: #3168B9;
-
-    color: #FEFEFE;
-
-    text-decoration: none;
-    font-size: 18px;
-
-    transition: transform 0.3s, background 0.3s;
-    animation: fadeIn 2s ease;
-}
-
-section #right-side {
-    /* background-color: #00b4d8;    */
+#right-side {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-section #right-side img {
-    text-align: center;
-    display: flex;
-    align-items: center;
-    padding: 50px 100px 0 0;
-    height: 400px;
-    width: 400px;
+#right-side img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
 }
 
+/* Section Cards - Moderno */
 #section-cards {
-    padding: 40px 80px; /* Aumentei o padding para melhor espaçamento geral */
-    background-color: #f4f7fa;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
 #section-cards h1 {
     text-align: center;
-    color: #3168B9;
-    margin-bottom: 30px;
-    font-size: 3.25em; /* Título maior */
+    color: #122A3F;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
 }
 
-/* Novo Container Flexível para os Cards */
-.cards-container { 
-    display: flex;
-    flex-wrap: wrap; /* Permite que os cards quebrem a linha */
-    justify-content: center; /* Centraliza os cards */
-    gap: 30px; /* Espaçamento entre os cards */
-    padding: 20px 0;
+/* Container dos Cards */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* Estilo Aprimorado para os Cards Individuais */
+/* Cards Modernos */
 .cards {
-    width: 240px; /* Largura fixa para os cards em telas grandes */
-    
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px; /* Cantos arredondados */
-    padding: 30px;
-    text-align: justify;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para o hover */
-    cursor: pointer;
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 180, 216, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+.cards::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #00b4d8, #0096c7);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.cards:hover::before {
+    transform: scaleX(1);
 }
 
 .cards:hover {
-    transform: translateY(-5px); /* Efeito de elevação sutil */
-    /* Sombra com a cor principal (azul) para destaque */
-    box-shadow: 0 8px 20px rgba(36, 102, 168, 0.2); 
-}
-
-.cards img {
-    height: 70px;
-    width: 70px;
-    margin-bottom: 15px;
-}
-
-.cards h3 {
-    color: #3168B9; /* Cor principal da sua ONG */
-    margin-bottom: 10px;
-    font-size: 1.5em;
-}
-
-.cards p {
-    color: #555;
-    line-height: 1.4;
-    height: 40px; /* Altura fixa para evitar quebra de layout */
-}
-
-.cards a{
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 180, 216, 0.15);
+    border-color: rgba(0, 180, 216, 0.2);
     text-decoration: none;
 }
 
-/* ------------------------------------------- */
-/* MEDIA QUERIES (Responsividade) */
-/* ------------------------------------------- */
+.cards img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 180, 216, 0.1);
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
 
-/* Para tablets e telas médias */
-@media (max-width: 1024px) {
-    #section-cards {
-        padding: 40px 20px;
+.cards:hover img {
+    transform: scale(1.1);
+}
+
+.cards h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #122A3F;
+    margin-bottom: 1rem;
+}
+
+.cards p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.cards a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Responsividade Moderna */
+@media screen and (max-width: 768px) {
+    #criar_conta {
+        flex-direction: column !important;
+        gap: 2rem !important;
+        padding: 2rem 1rem !important;
+        text-align: center;
     }
-    /* Permite dois cards por linha em tablets */
-    .cards {
-        width: 45%; 
-        min-width: 250px;
+    
+    #criar_conta > * {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    #left-side {
+        width: 100% !important;
+    }
+    
+    #left-side h1 {
+        font-size: 2rem !important;
+    }
+    
+    #left-side p {
+        font-size: 1rem !important;
+    }
+    
+    #right-side {
+        width: 100% !important;
+    }
+    
+    #right-side img {
+        width: 80% !important;
+        max-width: 400px;
+    }
+    
+    #section-cards {
+        padding: 2rem 1rem !important;
+    }
+    
+    #section-cards h1 {
+        font-size: 2rem !important;
+    }
+    
+    .cards-container {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
     }
 }
 
-/* Para celulares */
-@media (max-width: 600px) {
-    /* Força um card por linha em celulares */
+@media screen and (max-width: 480px) {
+    #criar_conta {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    #left-side h1 {
+        font-size: 1.75rem !important;
+    }
+    
+    #left-side p {
+        font-size: 0.95rem !important;
+    }
+    
+    #section-cards {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    #section-cards h1 {
+        font-size: 1.5rem !important;
+    }
+    
     .cards {
-        width: 100%; 
+        padding: 1.5rem !important;
+    }
+    
+    .cards-container {
+        gap: 1rem !important;
     }
 }

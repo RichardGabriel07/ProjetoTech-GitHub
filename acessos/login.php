@@ -14,29 +14,19 @@ unset($_SESSION['mensagem']);
 
 <head>
     <meta charset="UTF-8">
-    <title>Login do Cliente</title>
-    <link rel="stylesheet" href="../css/login.css"> <!-- Importa o estilo principal da aplicação -->
-    <script src="../js/script.js" defer></script> <!-- Importa o script (ex: para máscara do CPF, tel, cnpj) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ProjetoTech</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
+    <script src="../js/script.js" defer></script>
 </head>
 
 <body>
-    <header>
-        <div id="navbar">
-            <h1>Projeto <span>Tech</span></h1>
-
-            <nav id="navbar-li">
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="../cursos.php">Cursos </a></li>
-                    <li><a href="../clientes/agendamento.php">Agendamento</a></li>
-                    <li><a href="formar_turmas.html">Formar Turmas</a></li>
-                    <li><a href="../contato.html">Contato</a></li>
-                    <li><a href="../clientes/cadastrar_cliente.php">Cadastre-se</a></li>
-                    <li id="wilma"><a href="./login.php" id="entrar">Entrar</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Navbar Unificada Responsiva -->
+    <?php include("navbar_publico.php") ?>
 
     <section id="criar_conta">
         <div id="gratis">
@@ -45,7 +35,7 @@ unset($_SESSION['mensagem']);
         </div>
 
         <div id="right-side">
-            <img src="../asstes/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
+            <img src="../assets/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
         </div>
     </section>
 
@@ -58,7 +48,7 @@ unset($_SESSION['mensagem']);
         <?php endif; ?>
 
         <!-- Formulário de login -->
-        <form method="POST" action="./processa_login.php" class="formulario"
+        <form method="POST" action="processa_login.php" class="formulario"
             autocomplete="off">
             <!-- Campo CPF com estratégia para bloquear preenchimento automático -->
              <div class="input_group">
