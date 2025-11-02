@@ -88,41 +88,6 @@ php/            -> Processamentos internos e conexões (ex: conexao.php)
 assets/         -> Imagens, CSS, JavaScript  
 ```
 
----
-
-## ⚙️ Instalação
-
-1. **Clone o repositório**
-   ```bash
-   git clone https://github.com/seu-usuario/ProjetoTech-GitHub.git
-   ```
-2. **Configure o ambiente local**
-   - Instale o [XAMPP](https://www.apachefriends.org/) ou similar  
-   - Copie o projeto para a pasta `htdocs/`
-3. **Crie o banco de dados**
-   - No phpMyAdmin, crie um banco chamado `projetotech`
-   - Importe o arquivo `.sql` (se disponível)
-4. **Configure a conexão**
-   - Edite `php/conexao.php` com suas credenciais do banco:
-     ```php
-     $pdo = new PDO("mysql:host=localhost;dbname=projetotech", "usuario", "senha");
-     ```
-
----
-
-## 💻 Uso
-1. Acesse no navegador:
-   ```
-   http://localhost/ProjetoTech-GitHub/
-   ```
-2. Faça login como **Admin** para acessar o painel administrativo  
-3. Usuários podem:
-   - Visualizar cursos
-   - Se matricular
-   - Acompanhar progresso
-
----
-
 ## ⚠️ Status do Desenvolvimento
 O sistema está **em desenvolvimento ativo**.  
 Novas funcionalidades, melhorias de UX/UI e otimizações estão sendo adicionadas constantemente.
@@ -136,9 +101,3 @@ Novas funcionalidades, melhorias de UX/UI e otimizações estão sendo adicionad
   - Colaboradores da comunidade
 
 Quer contribuir? Envie um *pull request* ou abra uma *issue* com sugestões e melhorias!
-
----
-
-## 📜 Licença
-📌 *Licença ainda não definida.*  
-Recomenda-se definir uma licença (ex: MIT, GPLv3 ou Creative Commons) para garantir direitos de uso e contribuição.
