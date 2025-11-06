@@ -171,6 +171,8 @@ $form_data = $modo_edicao ? $turma_para_editar : [
     <meta charset="UTF-8">
     <title><?= $titulo_form ?> - ProjetoTech</title>
     <link rel="stylesheet" href="../css/listar_e_editar.css">
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
 </head>
 
 <body>
@@ -283,15 +285,15 @@ $form_data = $modo_edicao ? $turma_para_editar : [
 
         <table border="1">
             <tr>
-                <th>ID</th>
-                <th>Nome</th>
+                <th>ID Turma</th>
+                <th>Nome da Turma</th>
                 <th>Curso</th> 
                 <th>Instrutor</th>
                 <th>Local</th>
-                <th>Início</th>
-                <th>Término</th>
+                <th>Data de Início</th>
+                <th>Data do Término</th>
                 <th>Horário</th>
-                <th>Vagas</th>
+                <th>Vagas Disponíveis</th>
                 <th>Status</th>
                 <th>Ações</th>
             </tr>

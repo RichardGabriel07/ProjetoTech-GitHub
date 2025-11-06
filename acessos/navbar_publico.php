@@ -56,7 +56,12 @@ if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes'
                 <li class="nav-item">
                     <a href="<?php echo $base_path; ?>contato.php" class="nav-link">Contato</a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?php echo $base_path; ?>clientes/validar_certificado.php" class="nav-link">Validação de Certificado</a>
+                </li>
                 
+                <div class="separator"></div>
+
                 <!-- Links dinâmicos baseados no estado de login -->
                 <?php if (!$is_client_logged_in && !$is_admin_logged_in): ?>
                     <li class="nav-item">

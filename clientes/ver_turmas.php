@@ -131,6 +131,7 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
     <link rel="stylesheet" href="../css/ver_dados.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
     <style>
         button a {
@@ -168,8 +169,9 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
                             <th>Turma</th>
                             <th>Curso</th>
                             <th>Instrutor</th>
-                            <th>Local</th>
+                            <th>Dias da Semana</th>
                             <th>Início</th>
+                            <th>Fim</th>
                             <th>Horário</th>
                             <th>Vagas</th>
                             <th>Ação</th>
@@ -183,8 +185,9 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
                                 <td data-label="Turma"><?= htmlspecialchars($t['nome_turma']) ?></td>
                                 <td data-label="Curso"><?= htmlspecialchars($t['nome_curso']) ?></td>
                                 <td data-label="Instrutor"><?= htmlspecialchars($t['instrutor_nome']) ?></td>
-                                <td data-label="Local"><?= htmlspecialchars($t['local']) ?></td>
+                                <td data-label="Dias da Semana">Segunda e Quinta</td>
                                 <td data-label="Início"><?= date('d/m/Y', strtotime($t['data_inicio'])) ?></td>
+                                <td data-label="Final"><?= date('d/m/Y', strtotime($t['data_fim'])) ?></td>
                                 <td data-label="Horário"><?= htmlspecialchars($t['horario']) ?></td>
                                 <td data-label="Vagas">
                                     <span class="vagas-badge"><?= htmlspecialchars($t['vagas_disponiveis']) ?></span>

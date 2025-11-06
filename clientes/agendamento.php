@@ -1,14 +1,6 @@
 <?php
 
 session_start();
-
-// if (!isset($_SESSION['id_usuario'])) {
-//     header("Location: ../acessos/login.php");
-//     exit();
-// }
-
-$nomeInstrutor = isset($_SESSION['nome']) ? $_SESSION['nome'] : 'Cliente'; // Se o nome não existir, usa 'Cliente'
-$nomeInstrutor = ucfirst($nomeInstrutor); // Coloca a primeira letra em maiúscula
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +15,7 @@ $nomeInstrutor = ucfirst($nomeInstrutor); // Coloca a primeira letra em maiúscu
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
 </head>
 
 <body>
@@ -41,22 +34,22 @@ $nomeInstrutor = ucfirst($nomeInstrutor); // Coloca a primeira letra em maiúscu
     </section>
 
     <main id="box_formulario_cadastro">
-        <h2>Agende nossa visita!</h2>
+        <h2>Agende nossa Palestra!</h2>
 
         <form method="POST" action="salvar_agendamento.php" class="formulario">
             <!-- Campos do formulário -->
             <div id="left_side_form">
-                <div class="input_group">
+                <!-- <div class="input_group">
                     <label for="instrutor">Selecione o Instrutor:</label>
                     <select name="instrutor" id="instrutor" required>
                         <option value="" disabled selected>Selecione um Instrutor</option>
-                        <option value="rhuan">Rhuan</option>
-                        <option value="richard">Richard</option>
-                        <option value="kayke">Kayke</option>
+                        <option value="rhuan">Rhuan Gabriel</option>
+                        <option value="richard">Richard Gabriel</option>
+                        <option value="kayke">Kayke Gonçalves</option>
 
                     </select>
                     <br>
-                </div>
+                </div> -->
                 <!-- <div class="input_group">
                     <label for="curso">Curso de Interesse:</label>
                     <select name="curso" id="curso" required>

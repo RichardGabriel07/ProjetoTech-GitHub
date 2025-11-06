@@ -22,6 +22,7 @@ $id_usuario = $_SESSION['id_usuario'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cursos Online - ProjetoTech</title>
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
 
     <!-- CSS da navbar e estilo base -->
     <link rel="stylesheet" href="../css/navbar.css">

@@ -1,0 +1,281 @@
+/* ======================================================= */
+/* Variáveis e Reset Básico */
+/* ======================================================= */
+:root {
+    --ciano: #00b4d8; /* Cor principal (ProjetoTech) */
+    --azul-marinho: #122A3F; /* Cor de destaque (ProjetoTech) */
+    --fundo-claro: #f4f6f9; /* Fundo suave */
+    --texto-escuro: #333;
+    --borda-clara: #ddd;
+    --sombra-leve: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --sombra-forte: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    background-color: var(--fundo-claro);
+    font-family: 'Roboto', sans-serif;
+    color: var(--texto-escuro);
+    margin: 0;
+    padding: 0;
+}
+
+/* ======================================================= */
+/* Header da Aula (Título e Botão Voltar) */
+/* ======================================================= */
+.aula-header {
+    background: var(--azul-marinho);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    margin: 2rem auto 1.5rem;
+    max-width: 1400px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: var(--sombra-forte);
+}
+
+.aula-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.btn-voltar-curso {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.btn-voltar-curso:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ======================================================= */
+/* Layout Principal (Vídeo + Sidebar) */
+/* ======================================================= */
+.aula-container {
+    display: flex;
+    flex-direction: column; /* Padrão Mobile */
+    max-width: 1400px;
+    margin: 0 auto 30px;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.conteudo-aula {
+    /* /* flex: 2; Ocupa 3/4 do espaço em desktop  */
+    max-width: 1020px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+}
+
+.sidebar {
+    flex: 1; /* Ocupa 1/4 do espaço em desktop */
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+    padding: 0; /* O padding será dentro do chat container */
+    overflow: hidden; /* Importante para o chat */
+}
+
+.aula-titulo-principal {
+    color: var(--azul-marinho);
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--fundo-claro);
+    padding-bottom: 10px;
+}
+
+/* Player de Vídeo */
+.video-player {
+    position: relative;
+    width: 100%;
+    /* 16:9 Aspect Ratio (56.25% de 100%) */
+    padding-bottom: 56.25%; 
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-player iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Detalhes e Descrição */
+.aula-detalhes h3 {
+    color: var(--ciano);
+    margin-top: 25px;
+    font-size: 1.3em;
+}
+
+.duracao {
+    font-weight: 500;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Box de Próxima Aula */
+.proxima-aula-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin-top: 30px;
+    background-color: var(--fundo-claro);
+    border-left: 5px solid var(--ciano);
+    border-radius: 5px;
+}
+
+.btn-proxima-aula {
+    background-color: var(--ciano);
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn-proxima-aula:hover {
+    background-color: #008c9e;
+}
+
+
+/* ======================================================= */
+/* CHAT DE IA */
+/* ======================================================= */
+.ia-chat-container {
+    display: flex;
+    flex-direction: column;
+    /* Define uma altura fixa para que o chatMessages tenha scroll */
+    height: 70vh; 
+    min-height: 500px;
+}
+
+.chat-header {
+    background-color: var(--azul-marinho);
+    color: white;
+    padding: 15px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.chat-messages {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding: 15px;
+    background-color: white;
+    border-left: 1px solid var(--borda-clara);
+    border-right: 1px solid var(--borda-clara);
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.chat-message.user {
+    justify-content: flex-end; /* Mensagens do usuário à direita */
+}
+
+.message-bubble {
+    max-width: 85%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    line-height: 1.4;
+    font-size: 0.95em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.chat-message.user .message-bubble {
+    background-color: var(--ciano);
+    color: white;
+    /* Alinhamento visual */
+    border-bottom-right-radius: 5px; 
+}
+
+.chat-message.ia .message-bubble {
+    background-color: var(--fundo-claro);
+    color: var(--texto-escuro);
+    /* Alinhamento visual */
+    border-bottom-left-radius: 5px; 
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--borda-clara);
+    background-color: white;
+}
+
+.chat-input-area input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--borda-clara);
+    border-radius: 25px;
+    font-size: 1em;
+    outline: none;
+    margin-right: 10px;
+    transition: border-color 0.3s;
+}
+
+.chat-input-area input[type="text"]:focus {
+    border-color: var(--ciano);
+}
+
+.chat-input-area button {
+    background-color: var(--ciano);
+    color: white;
+    border: none;
+    border-radius: 25px; 
+    padding: 0 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.chat-input-area button:hover {
+    background-color: #008c9e;
+    transform: translateY(-1px);
+}
+
+
+/* ======================================================= */
+/* Responsividade (Desktop View) */
+/* ======================================================= */
+@media (min-width: 992px) {
+    .aula-container {
+        flex-direction: row; /* Vídeo e sidebar lado a lado */
+        align-items: stretch; /* Garante que os containers tenham a mesma altura */
+    }
+
+    .sidebar {
+        /* Garante que o sidebar ocupe a altura do container */
+        height: auto; 
+    }
+    
+    .ia-chat-container {
+        /* Ocupa 100% da sidebar */
+        height: 100%;
+    }
+}
+
+footer > p{
+    padding: 10px 0;
+    text-align: center;
+}

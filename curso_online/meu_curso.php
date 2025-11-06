@@ -59,32 +59,82 @@ $stmt->execute(['matricula' => $id_matricula]);
 $aulas_concluidas = $stmt->fetch()['concluidas'];
 
 $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 2) : 0;
+
+// meu_curso.php (Adicionar este bloco após o cálculo do $progresso e antes do HTML):
+
+// =======================================================================
+// LÓGICA DE GERAÇÃO DO CERTIFICADO (Se progresso = 100%)
+// =======================================================================
+
+if ($progresso >= 100) {
+    // 1. Verificar se o certificado já existe
+    $sql_check_cert = "SELECT id_certificado FROM certificados 
+                       WHERE id_usuario = :usuario AND id_curso = :curso";
+    $stmt_check_cert = $pdo->prepare($sql_check_cert);
+    $stmt_check_cert->execute([
+        'usuario' => $id_usuario,
+        'curso' => $id_curso
+    ]);
+    $certificado_existe = $stmt_check_cert->fetchColumn();
+
+    // Se o certificado NÃO existir, nós o geramos
+    if (!$certificado_existe) {
+
+        // 2. Preparar os dados para inserção
+        $carga_horaria = $curso['duracao']; // Assumindo que 'duracao' é a carga horária em horas (do SELECT do curso)
+        $codigo_validacao = gerarCodigoValidacao();
+
+        // 3. Inserir o novo certificado
+        $sql_insert_cert = "INSERT INTO certificados 
+                            (id_usuario, id_curso, carga_horaria, data_emissao, data_conclusao, codigo_validacao) 
+                            VALUES 
+                            (:usuario, :curso, :carga, NOW(), NOW(), :codigo)";
+
+        $stmt_insert_cert = $pdo->prepare($sql_insert_cert);
+
+        try {
+            $stmt_insert_cert->execute([
+                'usuario' => $id_usuario,
+                'curso' => $id_curso,
+                'carga' => $carga_horaria,
+                'codigo' => $codigo_validacao
+            ]);
+            // O certificado foi criado com sucesso!
+        } catch (PDOException $e) {
+            // Em caso de erro, você pode logar ou exibir uma mensagem
+            error_log("Erro ao gerar certificado para Usuário {$id_usuario} no Curso {$id_curso}: " . $e->getMessage());
+            // O código continua, mas o certificado não foi inserido
+        }
+    }
+}
+
+// =======================================================================
+// FIM DA LÓGICA DE GERAÇÃO
+// =======================================================================
+// No topo do meu_curso.php, ou em um arquivo incluído (ex: conexao.php)
+function gerarCodigoValidacao($length = 10)
+{
+    $caracteres = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $codigo = '';
+    for ($i = 0; $i < $length; $i++) {
+        $codigo .= $caracteres[rand(0, strlen($caracteres) - 1)];
+    }
+    return $codigo;
+}
+
+$_SESSION['id_curso'] = $id_curso;
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $curso['nome_curso']; ?> - ProjetoTech</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/area_cliente.css">
-    <link rel="icon" href="../assets/imagens/Generated Image November 02, 2025 - 12_39AM.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/imagens/Generated Image November 02, 2025 - 12_39AM.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/imagens/Generated Image November 02, 2025 - 12_39AM.png">
-    <link rel="manifest" href="../assets/imagens/Generated Image November 02, 2025 - 12_39AM.png">
-    <link rel="mask-icon" href="../assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Curso online de <?php echo $curso['nome_curso']; ?>">
-    <meta name="keywords" content="curso, online, <?php echo $curso['nome_curso']; ?>">
-    <meta name="author" content="ProjetoTech">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="google" content="notranslate">
-    <meta name="google" content="notranslate">
-    <meta name="google" content="notranslate">
-    <meta name="google" content="notranslate">
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
     <style>
         .curso-header {
             background: linear-gradient(135deg, #122A3F, #00b4d8);
@@ -93,14 +143,14 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
             border-radius: 10px;
             margin-bottom: 30px;
         }
-        
+
         .progresso-container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             margin: 20px 0;
         }
-        
+
         .barra-progresso {
             width: 100%;
             height: 30px;
@@ -109,7 +159,7 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
             overflow: hidden;
             position: relative;
         }
-        
+
         .barra-preenchida {
             height: 100%;
             background: linear-gradient(90deg, #00b4d8, #122A3F);
@@ -120,22 +170,22 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
             color: white;
             font-weight: bold;
         }
-        
+
         .modulo {
             background: white;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .modulo h3 {
             color: #122A3F;
             border-bottom: 3px solid #00b4d8;
             padding-bottom: 10px;
             margin-bottom: 15px;
         }
-        
+
         .aula {
             padding: 15px;
             margin: 10px 0;
@@ -144,27 +194,27 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
             border-radius: 5px;
             transition: all 0.3s;
         }
-        
+
         .aula:hover {
             transform: translateX(5px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        
+
         .aula.concluida {
             border-left-color: #28a745;
             background: #d4edda;
         }
-        
+
         .aula.disponivel {
             border-left-color: #00b4d8;
             cursor: pointer;
         }
-        
+
         .aula.bloqueada {
             opacity: 0.5;
             cursor: not-allowed;
         }
-        
+
         .icone {
             font-size: 24px;
             margin-right: 10px;
@@ -184,7 +234,7 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
             font-size: 16px;
             font-weight: bold;
             transition: all 0.3s ease;
-        }   
+        }
 
         .btn-voltar a:hover {
             background: #0096c7;
@@ -193,18 +243,19 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
         }
     </style>
 </head>
+
 <body>
     <?php include '../acessos/navbar_publico.php'; ?>
-    
+
     <main style="max-width: 1200px; margin: 0 auto; padding: 20px;">
-        
+
         <!-- Cabeçalho do Curso -->
         <div class="curso-header">
             <h1>📚 <?php echo $curso['nome_curso']; ?></h1>
             <p><?php echo $curso['descricao']; ?></p>
             <p>⏱️ Duração: <?php echo $curso['duracao']; ?></p>
         </div>
-        
+
         <!-- Barra de Progresso -->
         <div class="progresso-container">
             <h2>📊 Seu Progresso</h2>
@@ -214,24 +265,23 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
                 </div>
             </div>
             <p style="margin-top: 10px;">
-                ✅ <strong><?php echo $aulas_concluidas; ?></strong> de 
+                ✅ <strong><?php echo $aulas_concluidas; ?></strong> de
                 <strong><?php echo $total_aulas; ?></strong> aulas concluídas
             </p>
-            
+
             <?php if ($progresso >= 100): ?>
                 <div style="background: #28a745; color: white; padding: 15px; border-radius: 10px; margin-top: 15px;">
                     <h3>🎉 PARABÉNS! Você completou o curso!</h3>
-                    <a href="../clientes/certificado.php?curso=<?php echo $id_curso; ?>" 
-                       style="color: white; text-decoration: underline;">
+                    <a href="gerar_certificado.php?id_curso=<?php echo $id_curso; ?>" style="color: white; text-decoration: underline;">
                         🎓 Clique aqui para ver seu certificado
                     </a>
                 </div>
             <?php endif; ?>
         </div>
-        
+
         <!-- Módulos e Aulas -->
         <?php foreach ($modulos as $modulo): ?>
-            
+
             <div class="modulo">
                 <h3>📖 <?php echo $modulo['titulo']; ?></h3>
                 <?php if ($modulo['descricao']): ?>
@@ -239,7 +289,7 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
                         <?php echo $modulo['descricao']; ?>
                     </p>
                 <?php endif; ?>
-                
+
                 <?php
                 // Buscar aulas deste módulo
                 $sql_aulas = "SELECT * FROM aulas 
@@ -248,7 +298,7 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
                 $stmt = $pdo->prepare($sql_aulas);
                 $stmt->execute(['modulo' => $modulo['id_modulo']]);
                 $aulas = $stmt->fetchAll();
-                
+
                 foreach ($aulas as $aula):
                     // Verificar se esta aula foi concluída
                     $sql_check = "SELECT * FROM progresso_aulas 
@@ -261,37 +311,37 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
                         'aula' => $aula['id_aula']
                     ]);
                     $concluida = $stmt->fetch();
-                    
+
                     // Definir classe CSS
                     $classe = $concluida ? 'concluida' : 'disponivel';
                     $icone = $concluida ? '✅' : '▶️';
                     $link = "aula.php?id_aula=" . $aula['id_aula'] . "&id_curso=" . $id_curso;
                 ?>
-                
-                <a href="<?php echo $link; ?>" style="text-decoration: none; color: inherit;">
-                    <div class="aula <?php echo $classe; ?>">
-                        <span class="icone"><?php echo $icone; ?></span>
-                        <strong><?php echo $aula['titulo']; ?></strong>
-                        
-                        <?php if ($aula['duracao_minutos']): ?>
-                            <span style="float: right; color: #666;">
-                                ⏱️ <?php echo $aula['duracao_minutos']; ?> min
-                            </span>
-                        <?php endif; ?>
-                        
-                        <?php if ($concluida): ?>
-                            <span style="float: right; color: #28a745; margin-right: 20px;">
-                                Concluída
-                            </span>
-                        <?php endif; ?>
-                    </div>
-                </a>
-                
+
+                    <a href="<?php echo $link; ?>" style="text-decoration: none; color: inherit;">
+                        <div class="aula <?php echo $classe; ?>">
+                            <span class="icone"><?php echo $icone; ?></span>
+                            <strong><?php echo $aula['titulo']; ?></strong>
+
+                            <?php if ($aula['duracao_minutos']): ?>
+                                <span style="float: right; color: #666;">
+                                    ⏱️ <?php echo $aula['duracao_minutos']; ?> min
+                                </span>
+                            <?php endif; ?>
+
+                            <?php if ($concluida): ?>
+                                <span style="float: right; color: #28a745; margin-right: 20px;">
+                                    Concluída
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+
                 <?php endforeach; ?>
             </div>
-            
+
         <?php endforeach; ?>
-        
+
         <?php if (empty($modulos)): ?>
             <div style="text-align: center; padding: 50px;">
                 <p>⚠️ Este curso ainda não possui módulos cadastrados.</p>
@@ -303,7 +353,8 @@ $progresso = $total_aulas > 0 ? round(($aulas_concluidas / $total_aulas) * 100, 
                 ← Voltar para Cursos
             </a>
         </div>
-        
+
     </main>
 </body>
+
 </html>

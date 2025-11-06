@@ -9,21 +9,28 @@ $id_curso = filter_input(INPUT_GET, 'id_curso', FILTER_VALIDATE_INT) ?? null;
 $cursos = $pdo->query("SELECT id_curso, nome_curso FROM curso ORDER BY nome_curso")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id_curso = intval($_POST['id_curso']);
-    $titulo = $_POST['titulo'] ?? '';
-    $ordem = intval($_POST['ordem'] ?? 0);
+  $id_curso = intval($_POST['id_curso']);
+  $titulo = $_POST['titulo'] ?? '';
+  $ordem = intval($_POST['ordem'] ?? 0);
 
-    $sql = "INSERT INTO modulos (id_curso, titulo, ordem) VALUES (?, ?, ?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_curso, $titulo, $ordem]);
+  $sql = "INSERT INTO modulos (id_curso, titulo, ordem) VALUES (?, ?, ?)";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$id_curso, $titulo, $ordem]);
 
-    header("Location: modulo_admin.php?id_curso={$id_curso}&sucesso=1");
-    exit;
+  header("Location: modulo_admin.php?id_curso={$id_curso}&sucesso=1");
+  exit;
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head><meta charset="utf-8"><title>Adicionar Módulo</title></head>
+
+<head>
+  <meta charset="utf-8">
+  <title>Adicionar Módulo</title>
+  <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
+</head>
+
 <body>
   <h1>Adicionar Módulo</h1>
   <form method="post">
@@ -46,4 +53,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit">Salvar Módulo</button>
   </form>
 </body>
+
 </html>
