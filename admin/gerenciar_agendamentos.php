@@ -91,6 +91,8 @@ try {
     <meta charset="UTF-8">
     <title>Gerenciar Agendamentos - Admin</title>
     <link rel="stylesheet" href="../css/listar_e_editar.css">
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
 </head>
 
 <body>

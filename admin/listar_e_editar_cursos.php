@@ -64,9 +64,9 @@ if (
     $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] ==
     'atualizar'
 ) {
-    $nome_curso= $_POST["nome_curso"];
-    $duracao= $_POST["duracao"];
-    $descricao= $_POST["descricao"];
+    $nome_curso = $_POST["nome_curso"];
+    $duracao = $_POST["duracao"];
+    $descricao = $_POST["descricao"];
     $id = $_POST['id_curso'];
 
     $sql = "UPDATE curso SET nome_curso=?, descricao=?, duracao=? WHERE id_curso=?";
@@ -106,6 +106,8 @@ $cursos = $pdo->query($sql)->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar e Editar Cursos - ProjetoTech</title>
     <link rel="stylesheet" href="../css/listar_e_editar.css">
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
 </head>
 
 <body>
@@ -152,39 +154,39 @@ $cursos = $pdo->query($sql)->fetchAll();
                     <td> <?php echo $curso['nome_curso']; ?></td>
                     <td> <?php echo $curso['descricao']; ?></td>
                     <td> <?php echo $curso['duracao']; ?></td>
-<td>
-    <!-- Botão EDITAR CURSO -->
-    <button 
-        onclick="editContact(
+                    <td>
+                        <!-- Botão EDITAR CURSO -->
+                        <button
+                            onclick="editContact(
             '<?php echo $curso['id_curso']; ?>', 
             '<?php echo $curso['nome_curso']; ?>', 
             '<?php echo $curso['duracao']; ?>', 
             '<?php echo $curso['descricao']; ?>'
         )">
-        Editar
-    </button>
+                            Editar
+                        </button>
 
-    <!-- EXCLUIR CURSO -->
-    <form method="POST" style="display:inline;" 
-        onsubmit="return confirm('Tem certeza que deseja excluir o curso <?php echo $curso['nome_curso']; ?>?');">
+                        <!-- EXCLUIR CURSO -->
+                        <form method="POST" style="display:inline;"
+                            onsubmit="return confirm('Tem certeza que deseja excluir o curso <?php echo $curso['nome_curso']; ?>?');">
 
-        <input type="hidden" name="id_curso" value="<?php echo $curso['id_curso']; ?>">
-        <input type="hidden" name="action" value="excluir">
+                            <input type="hidden" name="id_curso" value="<?php echo $curso['id_curso']; ?>">
+                            <input type="hidden" name="action" value="excluir">
 
-        <button type="submit" 
-            style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">
-            Excluir
-        </button>
-    </form>
+                            <button type="submit"
+                                style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+                                Excluir
+                            </button>
+                        </form>
 
-    <!-- ✅ NOVO: GERENCIAR MÓDULOS -->
-    <a href="modulo_admin.php?id_curso=<?php echo $curso['id_curso']; ?>">
-        <button 
-            style="background-color: #0d6efd; color:white; border:none; padding:5px 10px; cursor:pointer; margin-left:5px;">
-            Módulos
-        </button>
-    </a>
-</td>
+                        <!-- ✅ NOVO: GERENCIAR MÓDULOS -->
+                        <a href="modulo_admin.php?id_curso=<?php echo $curso['id_curso']; ?>">
+                            <button
+                                style="background-color: #0d6efd; color:white; border:none; padding:5px 10px; cursor:pointer; margin-left:5px;">
+                                Módulos
+                            </button>
+                        </a>
+                    </td>
 
                 </tr>
             <?php endforeach; ?>

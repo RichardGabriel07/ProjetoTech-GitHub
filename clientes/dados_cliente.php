@@ -61,6 +61,8 @@ $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
     <title>Alterar Dados do Cliente</title>
     <link rel="stylesheet" href="../css/style.css">
     <script src="..js/script.js" defer></script>
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
 </head>
 
 <body>

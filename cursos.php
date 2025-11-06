@@ -16,6 +16,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <link rel="stylesheet" href="css/cursos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap" rel="stylesheet">
 </head>
 
@@ -45,10 +46,10 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="cards-container">
 
             <div class="cards">
-                <a href="curso_online/cursos_online.php">
+                <a href="curso_online/meu_curso.php?id=6">
                     <img src="assets/imagens/code.png" alt="ícone de programação">
-                    <h3>Programação</h3>
-                    <p>Aprenda a escrever códigos usando linguagens de programação</p>
+                    <h3>Programação Web</h3>
+                    <p>Aprenda a criar sites e aplicativos web com HTML, CSS e JavaScript</p>
                 </a>
             </div>
 

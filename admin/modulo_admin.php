@@ -50,43 +50,51 @@ $modulos = $stmt->fetchAll();
 
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Admin Módulos</title></head>
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin Módulos</title>
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
+</head>
+
 <body>
 
-<h1>Módulos do Curso</h1>
-<a href="modulo_admin.php?acao=adicionar&id_curso=<?= $id_curso ?>">+ Adicionar Módulo</a>
-<hr>
+    <h1>Módulos do Curso</h1>
+    <a href="modulo_admin.php?acao=adicionar&id_curso=<?= $id_curso ?>">+ Adicionar Módulo</a>
+    <hr>
 
-<?php if ($acao === 'listar'): ?>
+    <?php if ($acao === 'listar'): ?>
 
-<ul>
-<?php foreach ($modulos as $m): ?>
-<li>
-    <?= $m['titulo'] ?> (Ordem: <?= $m['ordem'] ?>)
-    — <a href="modulo_admin.php?acao=editar&id_modulo=<?= $m['id_modulo'] ?>&id_curso=<?= $id_curso ?>">Editar</a>
-    — <a href="modulo_admin.php?acao=excluir&id_modulo=<?= $m['id_modulo'] ?>&id_curso=<?= $id_curso ?>" onclick="return confirm('Excluir?');">Excluir</a>
-    — <a href="aula_admin.php?id_modulo=<?= $m['id_modulo'] ?>">Gerenciar Aulas</a>
-</li>
-<?php endforeach; ?>
-</ul>
+        <ul>
+            <?php foreach ($modulos as $m): ?>
+                <li>
+                    <?= $m['titulo'] ?> (Ordem: <?= $m['ordem'] ?>)
+                    — <a href="modulo_admin.php?acao=editar&id_modulo=<?= $m['id_modulo'] ?>&id_curso=<?= $id_curso ?>">Editar</a>
+                    — <a href="modulo_admin.php?acao=excluir&id_modulo=<?= $m['id_modulo'] ?>&id_curso=<?= $id_curso ?>" onclick="return confirm('Excluir?');">Excluir</a>
+                    — <a href="aula_admin.php?id_modulo=<?= $m['id_modulo'] ?>">Gerenciar Aulas</a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
 
-<?php else: ?>
+    <?php else: ?>
 
-<h2><?= $id_modulo ? 'Editar Módulo' : 'Adicionar Módulo' ?></h2>
+        <h2><?= $id_modulo ? 'Editar Módulo' : 'Adicionar Módulo' ?></h2>
 
-<form method="post">
-    <label>Título:</label><br>
-    <input type="text" name="titulo" value="<?= isset($modulo['titulo']) ? $modulo['titulo'] : '' ?>" required><br><br>
+        <form method="post">
+            <label>Título:</label><br>
+            <input type="text" name="titulo" value="<?= isset($modulo['titulo']) ? $modulo['titulo'] : '' ?>" required><br><br>
 
-    <label>Ordem:</label><br>
-    <input type="number" name="ordem" value="<?= isset($modulo['ordem']) ? $modulo['ordem'] : 1 ?>"><br><br>
+            <label>Ordem:</label><br>
+            <input type="number" name="ordem" value="<?= isset($modulo['ordem']) ? $modulo['ordem'] : 1 ?>"><br><br>
 
-    <button type="submit">Salvar</button>
-</form>
+            <button type="submit">Salvar</button>
+        </form>
 
-<a href="modulo_admin.php?id_curso=<?= $id_curso ?>">Voltar</a>
+        <a href="modulo_admin.php?id_curso=<?= $id_curso ?>">Voltar</a>
 
-<?php endif; ?>
+    <?php endif; ?>
 
 </body>
+
 </html>

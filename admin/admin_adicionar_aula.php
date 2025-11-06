@@ -8,25 +8,32 @@ $id_modulo = filter_input(INPUT_GET, 'id_modulo', FILTER_VALIDATE_INT);
 $modulos = $pdo->query("SELECT m.id_modulo, m.titulo AS modulo, c.titulo AS curso FROM modulos m JOIN curso c ON m.id_curso = c.id_curso ORDER BY c.titulo, m.ordem")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id_modulo = isset($_POST['id_modulo']) ? intval($_POST['id_modulo']) : null;
-    $titulo = isset($_POST['titulo']) ? $_POST['titulo'] : '';
-    $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
-    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'video';
-    $conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : '';
-    $duracao = isset($_POST['duracao_minutos']) ? intval($_POST['duracao_minutos']) : 0;
-    $ordem = isset($_POST['ordem']) ? intval($_POST['ordem']) : 0;
+  $id_modulo = isset($_POST['id_modulo']) ? intval($_POST['id_modulo']) : null;
+  $titulo = isset($_POST['titulo']) ? $_POST['titulo'] : '';
+  $descricao = isset($_POST['descricao']) ? $_POST['descricao'] : '';
+  $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'video';
+  $conteudo = isset($_POST['conteudo']) ? $_POST['conteudo'] : '';
+  $duracao = isset($_POST['duracao_minutos']) ? intval($_POST['duracao_minutos']) : 0;
+  $ordem = isset($_POST['ordem']) ? intval($_POST['ordem']) : 0;
 
-    $sql = "INSERT INTO aulas (id_modulo, titulo, descricao, tipo, conteudo, duracao_minutos, ordem, ativo, data_criacao) VALUES (?, ?, ?, ?, ?, ?, ?, 1, NOW())";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_modulo, $titulo, $descricao, $tipo, $conteudo, $duracao, $ordem]);
+  $sql = "INSERT INTO aulas (id_modulo, titulo, descricao, tipo, conteudo, duracao_minutos, ordem, ativo, data_criacao) VALUES (?, ?, ?, ?, ?, ?, ?, 1, NOW())";
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$id_modulo, $titulo, $descricao, $tipo, $conteudo, $duracao, $ordem]);
 
-    header("Location: admin_aulas.php?id_modulo={$id_modulo}&sucesso=1");
-    exit;
+  header("Location: admin_aulas.php?id_modulo={$id_modulo}&sucesso=1");
+  exit;
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head><meta charset="utf-8"><title>Adicionar Aula</title></head>
+
+<head>
+  <meta charset="utf-8">
+  <title>Adicionar Aula</title>
+  <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
+</head>
+
 <body>
   <h1>Adicionar Aula</h1>
   <form method="post">
@@ -61,4 +68,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button type="submit">Salvar Aula</button>
   </form>
 </body>
+
 </html>

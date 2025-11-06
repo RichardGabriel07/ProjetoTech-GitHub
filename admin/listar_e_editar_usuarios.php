@@ -109,6 +109,8 @@ $usuarios = $pdo->query($sql)->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar e Editar Usuarios - ProjetoTech</title>
     <link rel="stylesheet" href="../css/listar_e_editar.css">
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
 </head>
 
 <body>
@@ -171,8 +173,8 @@ $usuarios = $pdo->query($sql)->fetchAll();
             <?php endforeach; ?>
         </table>
     </section>
-    
-        <script src="../js/script.js"></script>
+
+    <script src="../js/script.js"></script>
 
     <script>
         // Localizada no final do seu arquivo de listagem, dentro da tag <script>

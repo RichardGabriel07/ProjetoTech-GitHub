@@ -109,6 +109,8 @@ $instrutor = $pdo->query($sql)->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar e Editar Instrutores - ProjetoTech</title>
     <link rel="stylesheet" href="../css/listar_e_editar.css">
+    <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
+
 </head>
 
 <body>

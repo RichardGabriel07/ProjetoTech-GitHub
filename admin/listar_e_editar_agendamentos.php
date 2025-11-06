@@ -2,226 +2,197 @@
 include '../php/conexao.php';
 include '../acessos/verificar_admin.php';
 
-// Inicialização de variáveis de mensagem
 $mensagem = "";
 $sucesso = false;
 
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// =======================================================
-// BLOCO 1: ADICIONAR INSTRUTOR (CREATE)
-// Inclusão da checagem 'action' para evitar conflitos
-// =======================================================
-if (
-    $_SERVER["REQUEST_METHOD"] === "POST" &&
-    isset($_POST['action']) && $_POST['action'] == 'incluir'
-) {
-    // 1. RECEBER OS DADOS
-    $data = trim($_POST["data"]);
-    $horario   = trim($_POST["hora"]);
-    $local              = trim($_POST["endereco"]);
-    $id_usuario = trim($_POST["id_usuario"]);
-    $id_instrutor              = trim($_POST["instrutor"]);
-    $id_curso              = trim($_POST["curso"]);
+/* =======================================================
+   BLOCO 1: ADICIONAR AGENDAMENTO (CREATE)
+   ======================================================= */
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['action'] == 'incluir') {
 
+    $data       = isset($_POST["data"]) ? $_POST["data"] : null;
+    $horario    = isset($_POST["hora"]) ? $_POST["hora"] : null;
+    $local      = isset($_POST["endereco"]) ? $_POST["endereco"] : null;
+    $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"] : null;
 
-
-    // 2. VALIDAR OS DADOS (BUG CORRIGIDO: $noome -> $nome)
-    if (empty($data) || empty($horario) || empty($local) || empty($id_usuario) || empty($id_instrutor) || empty($id_curso)) {
-        $mensagem = "Por favor, preencha todos os campos obrigatórios.";
+    if (!$data || !$horario || !$local || !$id_usuario) {
+        echo "<script>alert('Preencha todos os campos!');</script>";
+        exit;
     }
 
-    if ($id_agendamento && $data && $horario && $local && $id_usuario && $id_instrutor && $id_curso) {
-        // 3. INSERIR NO BANCO DE DADOS
-        try {
-            // Nota: Os nomes das colunas na tabela (nome, area) devem ser usados no SQL.
-            $sql = "INSERT INTO agendamento (data, horario, local, id_usuario, instrutor, curso) 
-                    VALUES (:data, :horario, :local, :id_usuario, :id_instrutor, :id_curso)";
-            $stmt = $pdo->prepare($sql);
+    try {
+        $sql = "INSERT INTO agendamento (data, horario, local, id_usuario)
+                VALUES (:data, :horario, :local, :id_usuario)";
+        $stmt = $pdo->prepare($sql);
 
-            // Usando bindParam:
-            $stmt->bindParam(':id_agendamento', $id_agendamento);
-            $stmt->bindParam(':data', $data);
-            $stmt->bindParam(':horario', $horario);
-            $stmt->bindParam(':local', $local);
-            $stmt->bindParam(':id_usuario', $id_usuario);
-            $stmt->bindParam(':id_instrutor', $id_instrutor);
-            $stmt->bindParam(':id_curso', $id_curso);
+        $stmt->execute([
+            ':data'       => $data,
+            ':horario'    => $horario,
+            ':local'      => $local,
+            ':id_usuario' => $id_usuario
+        ]);
 
-            if ($stmt->execute()) {
-                $mensagem = "Instrutor cadastrado com sucesso!";
-                $sucesso = true;
+        echo "<script>
+                alert('Agendamento cadastrado com sucesso!');
+                window.location.href = 'listar_e_editar_agendamentos.php';
+              </script>";
+        exit;
 
-                // CORREÇÃO PRG (Já existia, mas aqui está a confirmação)
-                header("Location: /ProjetoTech/admin/listar_e_editar_agendamentos.php#box_formulario_cadastro");
-                exit();
-            } else {
-                $mensagem = "Erro ao cadastrar: verifique os dados.";
-            }
-        } catch (PDOException $e) {
-            $mensagem = "Erro no cadastro: " . $e->getMessage();
-        }
-    } else {
-        $mensagem = "Preencha todos os campos obrigatórios.";
+    } catch (PDOException $e) {
+        echo "<script>alert('ERRO SQL: " . $e->getMessage() . "');</script>";
+        exit;
     }
 }
 
-// =======================================================
-// BLOCO 2: ATUALIZAR INSTRUTOR (UPDATE)
-// =======================================================
-if (
-    $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] ==
-    'atualizar'
-) {
-    $data = $_POST["data"];
-    $horario = $_POST["hora"];
-    $local = $_POST["endereco"];
-    $id_usuario = $_POST["id_usuario"];
-    $id_instrutor = $_POST["instrutor"];
-    $id_curso = $_POST["curso"];
-    $id = $_POST['id_agendamento'];
+/* =======================================================
+   BLOCO 2: ATUALIZAR AGENDAMENTO (UPDATE)
+   ======================================================= */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] == 'atualizar') {
 
-    $sql = "UPDATE agendamento SET data=?, horario=?, local=?, id_instrutor=?, id_curso=? WHERE id_agendamento=?";
+    $data       = isset($_POST["data"]) ? $_POST["data"] : null;
+    $horario    = isset($_POST["hora"]) ? $_POST["hora"] : null;
+    $local      = isset($_POST["endereco"]) ? $_POST["endereco"] : null;
+    $id_usuario = isset($_POST["id_usuario"]) ? $_POST["id_usuario"] : null;
+    $id         = isset($_POST['id_agendamento']) ? $_POST['id_agendamento'] : null;
+
+    $sql = "UPDATE agendamento 
+            SET data=?, horario=?, local=?, id_usuario=? 
+            WHERE id_agendamento=?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$data, $horario, $local, $id_instrutor, $id_curso, $id]);
+    $stmt->execute([$data, $horario, $local, $id_usuario, $id]);
 
-    // CORREÇÃO PRG
-    header("Location: /ProjetoTech/admin/listar_e_editar_agendamentos.php#box_formulario_cadastro");
-    exit();
+    echo "<script>
+            alert('Agendamento atualizado com sucesso!');
+            window.location.href = 'listar_e_editar_agendamentos.php';
+          </script>";
+    exit;
 }
 
-// =======================================================
-// BLOCO 3: EXCLUIR INSTRUTOR (DELETE)
-// =======================================================
-if (
-    $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] ==
-    'excluir'
-) {
-    $id = $_POST['id_agendamento'];
-    $sql = "DELETE FROM usuario WHERE id_agendamento=?";
+/* =======================================================
+   BLOCO 3: EXCLUIR AGENDAMENTO (DELETE)
+   ======================================================= */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] == 'excluir') {
+
+    $id = isset($_POST['id_agendamento']) ? $_POST['id_agendamento'] : null;
+
+    $sql = "DELETE FROM agendamento WHERE id_agendamento=?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
 
-    // CORREÇÃO PRG
-    header("Location: /ProjetoTech/admin/listar_e_editar_agendamentos.php#box_formulario_cadastro");
-    exit();
+    echo "<script>
+            alert('Agendamento excluído com sucesso!');
+            window.location.href = 'listar_e_editar_agendamentos.php';
+          </script>";
+    exit;
 }
-// Buscar contatos
-$sql = "SELECT * FROM agendamento";
+
+/* =======================================================
+   BUSCAR LISTA
+   ======================================================= */
+$sql = "SELECT id_agendamento, data, horario, local, id_usuario FROM agendamento";
 $agendamentos = $pdo->query($sql)->fetchAll();
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar e Editar Agendamentos - ProjetoTech</title>
     <link rel="stylesheet" href="../css/listar_e_editar.css">
 </head>
 
 <body>
-    <header>
-        <div id="navbar">
-            <h1>Projeto <span>Tech</span></h1>
 
-            <nav id="navbar-li">
-                <ul>
-                    <li><a href="../admin/area_administrativa.php">Área admin</a></li>
-                    <li id="wilma"><a href="../acessos/logout.php" id="sair">Sair</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header>
+    <div id="navbar">
+        <h1>Projeto <span>Tech</span></h1>
 
-    <section id="criar_conta">
-        <div id="gratis">
-            <h2>Cadastre e Edite<span> Agendamentos</span></h2>
-        </div>
+        <nav id="navbar-li">
+            <ul>
+                <li><a href="../admin/area_administrativa.php">Área admin</a></li>
+                <li id="wilma"><a href="../acessos/logout.php" id="sair">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-        <div id="right-side">
-            <img src="../assets/imagens/ChatGPT_Image_8_de_out._de_2025__22_58_56-removebg-preview.png" alt="Imagem de cadastro">
-        </div>
-    </section>
+<?php include '../admin/includes/formulario_agendamento.php'; ?>
 
-    <?php include 'includes/formulario_agendamento.php'; ?>
+<section id="box_formulario_cadastro">
+    <h2>Listar e Editar Agendamentos:</h2>
 
-    <section id="box_formulario_cadastro">
-        <h2>Listar e Editar Agendamentos:</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Endereço</th>
+            <th>ID Usuário</th>
+            <th>Funções</th>
+        </tr>
 
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Endereço</th>
-                <th>ID Usuário</th>
-                <th>Nome Instrutor</th>
-                <th>Funções</th>
-            </tr>
+        <?php foreach ($agendamentos as $agendamento): ?>
+        <tr>
+            <td><?= $agendamento['id_agendamento'] ?></td>
+            <td><?= $agendamento['data'] ?></td>
+            <td><?= $agendamento['horario'] ?></td>
+            <td><?= $agendamento['local'] ?></td>
+            <td><?= $agendamento['id_usuario'] ?></td>
 
-            <?php foreach ($agendamentos as $agendamento): ?>
-                <tr>
-                    <td> <?php echo $agendamento['id_agendamento']; ?></td>
-                    <td> <?php echo $agendamento['data']; ?></td>
-                    <td> <?php echo $agendamento['horario']; ?></td>
-                    <td> <?php echo $agendamento['local']; ?></td>
-                    <td> <?php echo $agendamento['id_usuario']; ?></td>
-                    <td> <?php echo $agendamento['id_instrutor']; ?></td>
+            <td>
 
+                <!-- BOTÃO EDITAR -->
+                <button
+                    onclick="editContact(
+                        '<?= $agendamento['id_agendamento'] ?>',
+                        '<?= $agendamento['id_usuario'] ?>',
+                        '<?= $agendamento['data'] ?>',
+                        '<?= $agendamento['horario'] ?>',
+                        '<?= $agendamento['local'] ?>'
+                    )"
+                    style="background-color: #007bff; color: white; padding:5px 10px;">
+                    Editar
+                </button>
 
-                    <td>
-                        <button
-                            onclick="editContact(
-                                    <?php echo $agendamento['id_agendamento']; ?>,          /* 1. ID do Agendamento */
-                                    '<?php echo htmlspecialchars($agendamento['id_curso']); ?>',       /* 2. ID do Curso */
-                                    '<?php echo htmlspecialchars($agendamento['id_instrutor']); ?>',   /* 3. ID do Instrutor */
-                                    '<?php echo htmlspecialchars($agendamento['data']); ?>',           /* 4. Data (formato yyyy-MM-dd) */
-                                    '<?php echo htmlspecialchars($agendamento['horario']); ?>',        /* 5. Horário (formato HH:mm:ss) */
-                                    '<?php echo htmlspecialchars($agendamento['local']); ?>'           /* 6. Endereço/Local (String) */
-                                )"
-                            style="background-color: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer;">Editar</button>
-                        <form method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir o agendamento <?php echo $agendamento['id_agendamento']; ?>?');">
+                <!-- BOTÃO EXCLUIR -->
+                <form method="POST" style="display:inline;" 
+                      onsubmit="return confirm('❌ Tem certeza que deseja excluir o agendamento <?= $agendamento['id_agendamento'] ?> ?');">
 
-                            <input type="hidden" name="id_agendamento" value="<?php echo $agendamento['id_agendamento']; ?>">
+                    <input type="hidden" name="id_agendamento" value="<?= $agendamento['id_agendamento'] ?>">
+                    <input type="hidden" name="action" value="excluir">
 
-                            <input type="hidden" name="action" value="excluir">
+                    <button type="submit" 
+                        style="background-color:#dc3545;color:white;padding:5px 10px;">
+                        Excluir
+                    </button>
+                </form>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</section>
 
-                            <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </section>
+<script>
+function editContact(id, id_usuario, data, horario, local) {
 
-    <script>
-        // Localizada no final do seu arquivo de listagem, dentro da tag <script>
-        function editContact(id_agendamento, id_curso, id_instrutor, data, horario, local) {
+    if (!confirm("⚠️ Você realmente deseja EDITAR este agendamento?")) {
+        return;
+    }
 
-            // 1. Campos Ocultos para a Ação
-            // Se 'id_agendamento' ou 'action' for o erro "null", este corrige.
-            document.getElementById('id_agendamento').value = id_agendamento;
-            document.getElementById('action').value = 'atualizar';
+    document.getElementById('id_agendamento').value = id;
+    document.getElementById('id_usuario').value = id_usuario;
+    document.getElementById('data').value = data;
+    document.getElementById('hora').value = horario;
+    document.getElementById('endereco').value = local;
+    document.getElementById('action').value = 'atualizar';
 
-            // 2. Selects (IDs de curso e instrutor)
-            document.getElementById('curso').value = id_curso;
-            document.getElementById('instrutor').value = id_instrutor;
+    document.getElementById('btn_submit').textContent = 'Salvar Alterações';
 
-            // 3. Campos de Data e Hora (Corrigindo os erros de formato das linhas 159 e 160)
-            document.getElementById('data').value = data; // Recebe yyyy-MM-dd
-            document.getElementById('hora').value = horario; // Recebe HH:mm:ss
+    window.scrollTo(0, 0);
+}
+</script>
 
-            // 4. Campo de Endereço/Local (Corrigindo o erro de Null da linha 161)
-            // O ID correto é 'endereco' (conforme seu formulario_agendamento.php)
-            document.getElementById('endereco').value = local;
-
-            // 5. Botão de Submit (Se 'btn_submit' for o erro "null", este corrige)
-            document.getElementById('btn_submit').textContent = 'Salvar Alterações';
-
-            window.scrollTo(0, 0);
-        }
-    </script>
-    </script>
 </body>
-
 </html>
