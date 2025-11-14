@@ -350,3 +350,74 @@ table button:hover, button:hover {
         width: 100% !important;
     }
 }
+/* Garante que a tabela nunca ultrapasse a largura da página */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* ativa rolagem horizontal se necessário */
+    margin-top: 20px;
+}
+
+/* Garante que a section da tabela apareça sobre as demais */
+#box_formulario_cadastro {
+    position: relative;
+    z-index: 10;
+    margin-top: 100px; /* Afasta da section anterior */
+    padding: 80px 30px;
+    overflow-x: scroll;
+}
+
+/* Garante que o bloco anterior (#criar_conta) não sobreponha a tabela */
+#criar_conta {
+    position: relative;
+    z-index: 1;
+}
+
+/* Impede que a imagem se sobreponha à tabela */
+#right-side img {
+    position: relative;
+    z-index: 1;
+}
+
+/* Contêiner de rolagem para tabelas largas */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    z-index: 5;
+}
+
+/* Garante que a tabela se adapte bem dentro do container */
+.table-container table {
+    min-width: 800px;
+}
+
+/* Em telas menores, a tabela vira um layout responsivo de cartões */
+@media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead {
+        display: none;
+    }
+    tbody tr {
+        margin-bottom: 1rem;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: white;
+    }
+    tbody td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        font-weight: 600;
+        color: #122A3F;
+        text-align: left;
+    }
+}

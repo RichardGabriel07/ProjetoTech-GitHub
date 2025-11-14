@@ -251,14 +251,14 @@ $_SESSION['id_curso'] = $id_curso;
 
         <!-- Cabeçalho do Curso -->
         <div class="curso-header">
-            <h1>📚 <?php echo $curso['nome_curso']; ?></h1>
+            <h1><?php echo $curso['nome_curso']; ?></h1>
             <p><?php echo $curso['descricao']; ?></p>
             <p>⏱️ Duração: <?php echo $curso['duracao']; ?></p>
         </div>
 
         <!-- Barra de Progresso -->
         <div class="progresso-container">
-            <h2>📊 Seu Progresso</h2>
+            <h2>Seu Progresso</h2>
             <div class="barra-progresso">
                 <div class="barra-preenchida" style="width: <?php echo $progresso; ?>%">
                     <?php echo $progresso; ?>%
@@ -270,8 +270,8 @@ $_SESSION['id_curso'] = $id_curso;
             </p>
 
             <?php if ($progresso >= 100): ?>
-                <div style="background: #28a745; color: white; padding: 15px; border-radius: 10px; margin-top: 15px;">
-                    <h3>🎉 PARABÉNS! Você completou o curso!</h3>
+                <div style="background: #28a745; color: white; padding: 15px; border-radius: 10px; margin-top: 15px; text-align: center;">
+                    <h3>PARABÉNS! Você completou o curso!</h3>
                     <a href="gerar_certificado.php?id_curso=<?php echo $id_curso; ?>" style="color: white; text-decoration: underline;">
                         🎓 Clique aqui para ver seu certificado
                     </a>
@@ -283,7 +283,7 @@ $_SESSION['id_curso'] = $id_curso;
         <?php foreach ($modulos as $modulo): ?>
 
             <div class="modulo">
-                <h3>📖 <?php echo $modulo['titulo']; ?></h3>
+                <h3><?php echo $modulo['titulo']; ?></h3>
                 <?php if ($modulo['descricao']): ?>
                     <p style="color: #666; margin-bottom: 15px;">
                         <?php echo $modulo['descricao']; ?>

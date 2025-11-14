@@ -54,7 +54,7 @@
                 <a href="../admin/criar_listar_e_editar_turmas.php" class="button">Listar e Editar Turmas</a>
             </section>
         </main>
-        <h2 class="left-pad">Ver e Permitir Agendamentos, Cursos e Turmas:</h2>
+        <h2 class="left-pad">Ver e Permitir Agendamentos, Cursos, Turmas e Alunos:</h2>
 
         <main id="gerenciar">
             <section class="section_gerenciar" id="agendamento">
@@ -68,8 +68,8 @@
             </section>
 
             <section class="section_gerenciar" id="turma">
-                <h2><i class="fas fa-users card-icon"></i> Ver e Permitir Turmas</h2>
-                <a href="gerenciar_turmas.php" class="button">Ver e Permitir Turmas</a>
+                <h2><i class="fas fa-users card-icon"></i> Ver Alunos Matriculados</h2>
+                <a href="listar_alunos_matriculados.php" class="button">Ver Alunos Matriculados</a>
             </section>
         </main>
     </body>

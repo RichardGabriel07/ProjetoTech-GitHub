@@ -54,18 +54,11 @@ $sql = "SELECT
             a.horario,
             a.local,
             a.status,
-            u.nome AS nome_usuario,
-            -- Se o JOIN falhar, COALESCE retorna o nome digitado em 'agendamento.id_instrutor'
-            COALESCE(i.nome, a.id_instrutor) AS nome_instrutor 
+            u.nome AS nome_usuario
         FROM
             agendamento AS a
         LEFT JOIN
             usuario AS u ON a.id_usuario = u.id_usuario
-        
-        -- NOVO JOIN: LIGA O NOME NA TABELA AGENDAMENTO COM O NOME NA TABELA INSTRUTOR
-        -- TRIM e LOWER são usados para evitar problemas de case e espaços
-        LEFT JOIN
-            instrutor AS i ON TRIM(LOWER(a.id_instrutor)) = TRIM(LOWER(i.nome))
             
         ORDER BY
             CASE WHEN a.status = 'Pendente' THEN 1 ELSE 2 END, 
@@ -124,7 +117,6 @@ try {
                     <tr>
                         <th>ID</th>
                         <th>Usuário</th>
-                        <th>Instrutor</th>
                         <th>Data</th>
                         <th>Horário</th>
                         <th>Local</th>
@@ -137,7 +129,6 @@ try {
                         <tr>
                             <td><?= htmlspecialchars($a['id_agendamento'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td><?= htmlspecialchars(isset($a['nome_usuario']) ? $a['nome_usuario'] : 'N/A', ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars(isset($a['nome_instrutor']) ? $a['nome_instrutor'] : 'N/A', ENT_QUOTES, 'UTF-8') ?></td>
                             <td><?= htmlspecialchars($a['data'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td><?= htmlspecialchars($a['horario']) ?></td>
                             <td><?= htmlspecialchars($a['local']) ?></td>

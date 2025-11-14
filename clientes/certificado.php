@@ -114,11 +114,11 @@ if (!$codigo_view || !$cert) {
         /* ⚠️ AJUSTE ESTES VALORES PARA ALINHAR COM SUA IMAGEM DE FUNDO */
         .nome-aluno {
             position: absolute;
-            top: 200px;
+            top: 210px;
             /* AJUSTAR: Distância do topo */
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2.8em;
+            font-size: 2.2em;
             color: #00b4d8;
             /* Cor Ciano para destaque */
             font-weight: 700;
@@ -168,14 +168,29 @@ if (!$codigo_view || !$cert) {
         .assinatura-diretor {
             font-family: "Parisienne", cursive;
             position: absolute;
-            bottom: 175px; /* AJUSTAR: Distância da parte inferior da imagem */
+            bottom: 175px;
+            /* AJUSTAR: Distância da parte inferior da imagem */
             left: 48%;
             transform: translateX(-50%);
             font-size: 1.2em;
-            color: #122A3F; /* Cor do texto da assinatura */
+            color: #122A3F;
+            /* Cor do texto da assinatura */
             font-weight: bold;
             text-align: center;
-            width: 300px; /* Largura da área da assinatura */
+            width: 300px;
+            /* Largura da área da assinatura */
+        }
+
+        #seus-certificados{
+            text-align: center;
+        }
+
+        #seus-certificados > h1{
+            font-size: 2.2rem;
+        }
+
+        .no-certificated{
+            font-size: 1.2rem;
         }
 
         /* ======================================================= */
@@ -235,6 +250,11 @@ if (!$codigo_view || !$cert) {
                 background-size: contain !important;
                 background-repeat: no-repeat !important;
                 display: block !important;
+            }
+
+            .assinatura-diretor {
+                font-family: "Parisienne", cursive;
+
             }
 
             /* 3. Garante que o texto tenha cor e seja visível */
@@ -355,7 +375,11 @@ if (!$codigo_view || !$cert) {
     ?>
 
     <main style="max-width: 1200px; margin: 0 auto; padding: 20px;">
-        <h1 class="no-certificated">🎓 Meus Certificados</h1>
+        <div id="seus-certificados">
+            <h1 class="no-certificated">🎓 Meus Certificados</h1>
+            <p>Aqui você tem acesso aos seus certificados! </p>
+
+        </div>
 
         <?php if ($cert): ?>
             <div class="certificado-container">
@@ -373,7 +397,7 @@ if (!$codigo_view || !$cert) {
                         Cód. de Validação: <strong><?= $codigo_validacao ?></strong>
                     </div>
 
-                    <h2 class="assinatura-diretor">Rhuan gabriel baraúna</h2>
+                    <h2 class="assinatura-diretor">Rhuan Gabriel Baraúna</h2>
                 </div>
             </div>
 

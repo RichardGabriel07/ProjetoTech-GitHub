@@ -1,0 +1,5 @@
+{
+    "require": {
+        "abacatepay/php-sdk": "^1.0"
+    }
+}

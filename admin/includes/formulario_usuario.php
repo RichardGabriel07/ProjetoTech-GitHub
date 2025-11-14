@@ -1,10 +1,10 @@
-        <?php include '../acessos/verificar_admin.php';
+<?php include '../acessos/verificar_admin.php';
 ?>    
     <script src="../../js/script.js"></script>
     <main id="box_formulario_cadastro">
         <h2>Crie sua conta</h2>
 
-        <form method="POST" action="/ProjetoTech/admin/listar_e_editar_usuarios.php" class="formulario">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['SCRIPT_NAME']); ?>" class="formulario">
             <input type="hidden" name="id_usuario" id="id_usuario">
             <input type="hidden" name="action" id="action" value="incluir">
             <!-- Campos do formulário -->

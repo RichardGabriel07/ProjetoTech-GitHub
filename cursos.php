@@ -1,7 +1,7 @@
 <?php
 // Inicia a sessão no início do arquivo
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+    session_start(); 
 }
 ?>
 

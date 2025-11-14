@@ -25,19 +25,12 @@ $sql = "SELECT
             a.horario,
             a.local,
             a.status,
-            u.nome AS nome_usuario,
-            -- COALESCE garante que, se o JOIN falhar, o nome digitado em 'agendamento.id_instrutor' seja usado
-            COALESCE(i.nome, a.id_instrutor) AS nome_instrutor 
+            u.nome AS nome_usuario
         FROM
             agendamento AS a
         -- Faz JOIN com a tabela usuário (apenas para confirmar, mas já estamos usando o filtro abaixo)
         LEFT JOIN
             usuario AS u ON a.id_usuario = u.id_usuario
-        
-        -- O JOIN CORRIGIDO: Liga a coluna VARCHAR (nome) com o nome do instrutor, ignorando case/espaços
-        LEFT JOIN
-            instrutor AS i ON TRIM(LOWER(a.id_instrutor)) = TRIM(LOWER(i.nome))
-            
         -- FILTRA APENAS PELO ID DO USUÁRIO LOGADO!
         WHERE
             a.id_usuario = ?
@@ -47,14 +40,12 @@ $sql = "SELECT
 
 try {
     $stmt = $pdo->prepare($sql);
-    // Passa o ID do usuário logado como parâmetro
-    $stmt->execute([$id_usuario]); 
-    $agendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    $stmt->execute([$id_usuario]);
+    $agendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC); // array apenas se sucesso
 } catch (PDOException $e) {
     error_log("Erro na query de agendamentos do usuário: " . $e->getMessage());
-    $agendamentos = [];
     $mensagem = "Erro ao carregar seus agendamentos do banco de dados.";
+    $agendamentos = null; // mantém null para não cair no 'vazio'
 }
 
 ?>
@@ -95,7 +86,6 @@ try {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Instrutor</th>
                             <th>Data</th>
                             <th>Horário</th>
                             <th>Local</th>
@@ -106,7 +96,6 @@ try {
                         <?php foreach ($agendamentos as $a): ?>
                             <tr>
                                 <td data-label="ID"><?= htmlspecialchars($a['id_agendamento']) ?></td>
-                                <td data-label="Instrutor"><?= htmlspecialchars(isset($a['nome_instrutor']) ? $a['nome_instrutor'] : 'N/A') ?></td>
                                 <td data-label="Data"><?= date('d/m/Y', strtotime($a['data'])) ?></td>
                                 <td data-label="Horário"><?= htmlspecialchars($a['horario']) ?></td>
                                 <td data-label="Local"><?= htmlspecialchars($a['local']) ?></td>

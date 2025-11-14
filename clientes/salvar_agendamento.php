@@ -16,24 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data      = trim($_POST["data"]);
     $horario      = trim($_POST["hora"]);
     $local  = trim($_POST["endereco"]);
-    $instrutor  = trim($_POST["instrutor"]);
 
      // 2. VALIDAR OS DADOS (básico, pode ser expandido)
-     if (empty($id_usuario) || empty($data) || empty($horario) || empty($local) || empty($instrutor)) {
+     if (empty($id_usuario) || empty($data) || empty($horario) || empty($local)) {
         $mensagem = "Por favor, preencha todos os campos obrigatórios.";
     }
 
-    if ($id_usuario && $data && $horario && $local && $instrutor) {
+    if ($id_usuario && $data && $horario && $local) {
          // 3. INSERIR NO BANCO DE DADOS
         try {
-            $sql = "INSERT INTO agendamento (id_usuario, data, horario, local, id_instrutor) 
-                    VALUES (:id_usuario, :data, :horario, :local, :id_instrutor)";
+            $sql = "INSERT INTO agendamento (id_usuario, data, horario, local) 
+                    VALUES (:id_usuario, :data, :horario, :local)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':id_usuario', $id_usuario);
             $stmt->bindParam(':data', $data);
             $stmt->bindParam(':horario', $horario);
             $stmt->bindParam(':local', $local);
-            $stmt->bindParam(':id_instrutor', $instrutor);
 
 
             if ($stmt->execute()) {

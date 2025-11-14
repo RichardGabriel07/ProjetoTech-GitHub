@@ -32,7 +32,7 @@ unset($_SESSION['mensagem']);
 
     <section id="criar_conta">
         <div id="gratis">
-            <h2>Bem Vindo(a) de <span>Volta!</span></h2>
+            <h2>Bem-Vindo(a) de <span>Volta!</span></h2>
             <p>Faça login para continuar sua jornada de aprendizado.</p>
         </div>
 

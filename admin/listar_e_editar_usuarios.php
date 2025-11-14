@@ -40,13 +40,14 @@ if (
             $stmt->bindParam(':nome', $nome);
             $stmt->bindParam(':cpf', $cpf);
             $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':senha', password_hash($senha, PASSWORD_DEFAULT)); // Hash da senha
+            // Usar bindValue para valores diretos (hash é uma expressão)
+            $stmt->bindValue(':senha', password_hash($senha, PASSWORD_DEFAULT)); // Hash da senha
             if ($stmt->execute()) {
                 $mensagem = "Instrutor cadastrado com sucesso!";
                 $sucesso = true;
 
-                // CORREÇÃO PRG (Já existia, mas aqui está a confirmação)
-                header("Location: /ProjetoTech/admin/listar_e_editar_usuarios.php#box_formulario_cadastro");
+                // Redireciona para caminho fixo do projeto (evita variações de host)
+                header('Location: /ProjetoTech-GitHub/admin/listar_e_editar_usuarios.php#box_formulario_cadastro');
                 exit();
             } else {
                 $mensagem = "Erro ao cadastrar: verifique os dados.";
@@ -76,8 +77,8 @@ if (
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$nome, $cpf, $email, password_hash($senha, PASSWORD_DEFAULT), $id]);
 
-    // CORREÇÃO PRG
-    header("Location: /ProjetoTech/admin/listar_e_editar_usuarios.php#box_formulario_cadastro");
+    // Redireciona para caminho fixo do projeto (evita variações de host)
+    header('Location: /ProjetoTech-GitHub/admin/listar_e_editar_usuarios.php#box_formulario_cadastro');
     exit();
 }
 
@@ -93,8 +94,8 @@ if (
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
 
-    // CORREÇÃO PRG
-    header("Location: /ProjetoTech/admin/listar_e_editar_usuarios.php#box_formulario_cadastro");
+    // Redireciona para caminho fixo do projeto (evita variações de host)
+    header('Location: /ProjetoTech-GitHub/admin/listar_e_editar_usuarios.php#box_formulario_cadastro');
     exit();
 }
 // Buscar contatos
@@ -139,40 +140,54 @@ $usuarios = $pdo->query($sql)->fetchAll();
 
     <?php include 'includes/formulario_usuario.php'; ?>
 
-    <section id="box_formulario_cadastro">
-        <h2>Listar e Editar Usuarios:</h2>
+<section id="box_formulario_cadastro">
+    <h2>Listar e Editar Usuários</h2>
 
+    <div class="table-container">
         <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Nome do Usuario</th>
-                <th>E-mail</th>
-                <th>Senha</th>
-                <th>Cpf</th>
-                <th>Funções</th>
-            </tr>
-
-            <?php foreach ($usuarios as $usuario): ?>
+            <thead>
                 <tr>
-                    <td> <?php echo $usuario['id_usuario']; ?></td>
-                    <td> <?php echo $usuario['nome']; ?></td>
-                    <td> <?php echo $usuario['email']; ?></td>
-                    <td> <?php echo $usuario['senha']; ?></td>
-                    <td> <?php echo $usuario['cpf']; ?></td>
-                    <td><button onclick="editContact('<?php echo $usuario['id_usuario']; ?>', '<?php echo $usuario['nome']; ?>','<?php echo $usuario['cpf']; ?>','<?php echo $usuario['email']; ?>', '<?php echo $usuario['senha']; ?>')">Editar</button>
-                        <form method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir o usuario <?php echo $usuario['nome']; ?>?');">
-
-                            <input type="hidden" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>">
-
-                            <input type="hidden" name="action" value="excluir">
-
-                            <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">Excluir</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>Nome do Usuário</th>
+                    <th>E-mail</th>
+                    <th>Senha (Hash)</th>
+                    <th>CPF</th>
+                    <th>Funções</th>
                 </tr>
-            <?php endforeach; ?>
+            </thead>
+            <tbody>
+                <?php foreach ($usuarios as $usuario): ?>
+                    <tr>
+                        <td><?= $usuario['id_usuario']; ?></td>
+                        <td><?= htmlspecialchars($usuario['nome']); ?></td>
+                        <td><?= htmlspecialchars($usuario['email']); ?></td>
+                        <td><?= htmlspecialchars($usuario['senha']); ?></td>
+                        <td><?= htmlspecialchars($usuario['cpf']); ?></td>
+                        <td>
+                            <button onclick="editContact(
+                                '<?= $usuario['id_usuario']; ?>',
+                                '<?= htmlspecialchars($usuario['nome']); ?>',
+                                '<?= htmlspecialchars($usuario['cpf']); ?>',
+                                '<?= htmlspecialchars($usuario['email']); ?>',
+                                '<?= htmlspecialchars($usuario['senha']); ?>'
+                            )">Editar</button>
+
+                            <form method="POST" style="display:inline;"
+                                  onsubmit="return confirm('Tem certeza que deseja excluir o usuário <?= $usuario['nome']; ?>?');">
+                                <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario']; ?>">
+                                <input type="hidden" name="action" value="excluir">
+                                <button type="submit"
+                                        style="background-color: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
         </table>
-    </section>
+    </div>
+</section>
 
     <script src="../js/script.js"></script>
 

@@ -10,7 +10,7 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 // 🎯 CORREÇÃO CRÍTICA: DEFINIR A VARIÁVEL LOCAL COM O ID DA SESSÃO
-$id_usuario = $_SESSION['id_usuario']; 
+$id_usuario = $_SESSION['id_usuario'];
 // Agora sim, $id_usuario terá um valor válido (ex: 1, 4, 11, etc.)
 
 ?>
@@ -28,6 +28,18 @@ $id_usuario = $_SESSION['id_usuario'];
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/area_cliente.css">
     <style>
+        :root {
+    --primary-color: #122A3F;
+    --secondary-color: #00b4d8;
+    --accent-color: #0096c7;
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+    --border-light: rgba(0, 180, 216, 0.1);
+    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 12px 40px rgba(0, 180, 216, 0.15);
+}
         .btn-voltar {
             text-align: center;
             margin-top: 20px;
@@ -42,11 +54,51 @@ $id_usuario = $_SESSION['id_usuario'];
             font-size: 16px;
             font-weight: bold;
             transition: all 0.3s ease;
-        }   
+        }
+
         .btn-voltar a:hover {
             background: #0096c7;
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(0, 180, 216, 0.4);
+        }
+
+        /* Hero Section - Contato */
+        #entre-em-contato {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a5f 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #entre-em-contato::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+
+        #entre-em-contato h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        #entre-em-contato p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative; 
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -55,9 +107,15 @@ $id_usuario = $_SESSION['id_usuario'];
     <!-- Navbar do site -->
     <?php include '../acessos/navbar_publico.php'; ?>
 
-    <main>
-        <h1>📚 Cursos Online Disponíveis</h1>
+    <section id="entre-em-contato">
+        <div id="duvidas">
+            <h2>Cursos Online Disponíveis</h2>
 
+            <p>Explore nossos cursos online e expanda seus conhecimentos. <br> Escolha o curso ideal para sua trajetória profissional!</p>
+        </div>
+    </section>
+
+    <main>
         <?php
         // 2. Mostrar a query que vai executar
         $sql = "SELECT * FROM curso WHERE tipo_curso = 'Online' ORDER BY id_curso DESC";
@@ -135,11 +193,11 @@ $id_usuario = $_SESSION['id_usuario'];
             <?php endforeach; ?>
         </div>
 
-            <div class="btn-voltar">
-                <a href="../clientes/area_cliente.php" class="btn">
-                    ← Voltar para Área do Cliente
-                </a>
-            </div>
+        <div class="btn-voltar">
+            <a href="../clientes/area_cliente.php" class="btn">
+                ← Voltar para Área do Cliente
+            </a>
+        </div>
 
     </main>
 </body>

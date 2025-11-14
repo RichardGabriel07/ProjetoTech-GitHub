@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
                 $stmt_matricula = $pdo->prepare($sql_matricula);
                 $stmt_matricula->execute([$id_turma_a_matricular, $id_usuario]);
 
-                $mensagem = "Matrícula em curso Físico realizada com sucesso! Status: Pendente.";
+                $mensagem = "Matrícula em curso Físico realizada com sucesso! </br> Status: Pendente.";
             }
         }
 
@@ -141,6 +141,46 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
         button a:hover {
             color: #0096c7;
         }
+
+        /* Hero Section - Contato */
+#entre-em-contato {
+    background: linear-gradient(135deg, #122A3F 0%, #1e3a5f 100%);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#entre-em-contato::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+}
+
+#entre-em-contato h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+#entre-em-contato p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
     </style>
 </head>
 
@@ -148,8 +188,16 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
     <!-- Navbar Unificada Responsiva -->
     <?php include("../acessos/navbar_publico.php") ?>
 
+    <section id="entre-em-contato">
+        <div id="duvidas">
+            <h2>Matricule-se no Curso Presencial!</h2>
+
+            <p>Estude as ultimas tecnologias lançadas<br>com conforto de nossas salas e com professores capacitados.</p>
+        </div>
+    </section>
+
     <main>
-        <h2>Turmas Abertas para Matrícula</h2>
+        <h2>Turmas Abertas</h2>
 
         <?php if ($mensagem): ?>
             <p class="mensagem_alerta">
@@ -204,7 +252,9 @@ $matriculas_aluno = $stmt_matriculas->fetchAll(PDO::FETCH_COLUMN); // Retorna ap
                                     <?php else: ?>
                                         <!-- Logado e não matriculado: pode matricular -->
                                         <form method="POST">
-                                            <button>Matricular</button>
+                                            <input type="hidden" name="action" value="matricular">
+                                            <input type="hidden" name="id_turma" value="<?= $t['id_turma'] ?>">
+                                            <button type="submit">Matricular</button>
                                         </form>
                                     <?php endif; ?>
                                 </td>

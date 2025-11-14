@@ -1,0 +1,221 @@
+/* ==============================================
+   AULA_ADMIN.CSS
+   Estilo da página aula_admin.php
+   Mantém o tema do ProjetoTech (azul escuro + azul ciano)
+   ============================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+
+:root {
+  --bg1: #122A3F;
+  --bg2: #1e3a5f;
+  --accent: #00b4d8;
+  --accent-dark: #0096c7;
+  --text: #eaf6fb;
+  --muted: #8fb7d4;
+  --card: #163453;
+  --danger: #d62828;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  margin: 0;
+  font-family: "Alan Sans", system-ui, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  color: var(--accent);
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: var(--accent-dark);
+  text-decoration: underline;
+}
+
+/* ==============================================
+   BOTÃO ADICIONAR AULA
+   ============================================== */
+a[href*="adicionar"] {
+  display: inline-block;
+  background: var(--accent);
+  color: #022;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+a[href*="adicionar"]:hover {
+  background: var(--accent-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ==============================================
+   LISTAGEM DE AULAS
+   ============================================== */
+ul {
+  list-style: none;
+  padding: 0;
+  width: 90%;
+  max-width: 900px;
+}
+
+li {
+  background: var(--card);
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 5px 15px var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+li span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Botões dentro da listagem */
+li a {
+  margin-left: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  font-weight: 500;
+}
+
+li a:hover {
+  background: var(--accent);
+  color: #022;
+  text-decoration: none;
+}
+
+/* Botão excluir */
+li a[href*="excluir"] {
+  background: rgba(214, 40, 40, 0.2);
+  color: #ffb3b3;
+}
+
+li a[href*="excluir"]:hover {
+  background: var(--danger);
+  color: white;
+}
+
+/* ==============================================
+   FORMULÁRIO DE EDIÇÃO/ADIÇÃO
+   ============================================== */
+form {
+  background: var(--card);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 5px 20px var(--shadow);
+  margin-top: 25px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #0f2d47;
+  color: var(--text);
+  margin-bottom: 15px;
+  font-size: 15px;
+  outline: none;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 5px var(--accent);
+}
+
+/* ==============================================
+   BOTÕES
+   ============================================== */
+button,
+a[href*="Voltar"] {
+  background: var(--accent);
+  color: #022;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover,
+a[href*="Voltar"]:hover {
+  background: var(--accent-dark);
+  color: white;
+  transform: translateY(-2px);
+}
+
+a[href*="Voltar"] {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* ==============================================
+   RESPONSIVIDADE
+   ============================================== */
+@media (max-width: 768px) {
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  form {
+    padding: 20px;
+  }
+
+  a[href*="adicionar"] {
+    width: 90%;
+    text-align: center;
+  }
+
+  textarea {
+    min-height: 80px;
+  }
+}
+    

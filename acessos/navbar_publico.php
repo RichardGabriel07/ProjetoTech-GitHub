@@ -25,6 +25,8 @@ if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes'
     $base_path = '../';
 }
 
+$nameCapitalized = ucfirst($user_name);
+
 ?>
 
 <!-- Estilos e Scripts para Navbar Responsiva -->
@@ -59,7 +61,10 @@ if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes'
                 <li class="nav-item">
                     <a href="<?php echo $base_path; ?>clientes/validar_certificado.php" class="nav-link">Validação de Certificado</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a href="<?php echo $base_path; ?>clientes/doacao.php" class="nav-link">Doação</a>
+                </li>
+
                 <div class="separator"></div>
 
                 <!-- Links dinâmicos baseados no estado de login -->
@@ -70,31 +75,31 @@ if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes'
                     <li class="nav-item">
                         <a href="<?php echo $base_path; ?>acessos/login.php" class="nav-link nav-btn nav-btn-primary">Entrar</a>
                     </li>
-                
+
                 <?php elseif ($is_client_logged_in): ?>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link user-menu">
                             <i class="fas fa-user-circle"></i>
-                            <span><?php echo $user_name; ?></span>
+                            <span><?php echo $nameCapitalized; ?></span>
                             <i class="fas fa-chevron-down"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo $base_path; ?>clientes/area_cliente.php">
-                                <i class="fas fa-user"></i> Área do Cliente
-                            </a></li>
+                                    <i class="fas fa-user"></i> Área do Cliente
+                                </a></li>
                             <li><a href="<?php echo $base_path; ?>clientes/ver_agendamentos.php">
-                                <i class="fas fa-calendar"></i> Meus Agendamentos
-                            </a></li>
+                                    <i class="fas fa-calendar"></i> Meus Agendamentos
+                                </a></li>
                             <li><a href="<?php echo $base_path; ?>clientes/ver_turmas.php">
-                                <i class="fas fa-chalkboard-teacher"></i> Minhas Turmas
-                            </a></li>
+                                    <i class="fas fa-chalkboard-teacher"></i> Minhas Turmas
+                                </a></li>
                             <li class="divider"></li>
                             <li><a href="<?php echo $base_path; ?>acessos/logout.php">
-                                <i class="fas fa-sign-out-alt"></i> Sair
-                            </a></li>
+                                    <i class="fas fa-sign-out-alt"></i> Sair
+                                </a></li>
                         </ul>
                     </li>
-                
+
                 <?php elseif ($is_admin_logged_in): ?>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link user-menu admin-menu">
@@ -104,21 +109,21 @@ if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes'
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo $base_path; ?>admin/area_administrativa.php">
-                                <i class="fas fa-tachometer-alt"></i> Dashboard
-                            </a></li>
+                                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                                </a></li>
                             <li><a href="<?php echo $base_path; ?>admin/listar_e_editar_usuarios.php">
-                                <i class="fas fa-users"></i> Gerenciar Usuários
-                            </a></li>
+                                    <i class="fas fa-users"></i> Gerenciar Usuários
+                                </a></li>
                             <li><a href="<?php echo $base_path; ?>admin/listar_e_editar_cursos.php">
-                                <i class="fas fa-graduation-cap"></i> Gerenciar Cursos
-                            </a></li>
+                                    <i class="fas fa-graduation-cap"></i> Gerenciar Cursos
+                                </a></li>
                             <li><a href="<?php echo $base_path; ?>admin/gerenciar_agendamentos.php">
-                                <i class="fas fa-calendar-check"></i> Gerenciar Agendamentos
-                            </a></li>
+                                    <i class="fas fa-calendar-check"></i> Gerenciar Agendamentos
+                                </a></li>
                             <li class="divider"></li>
                             <li><a href="<?php echo $base_path; ?>acessos/logout.php">
-                                <i class="fas fa-sign-out-alt"></i> Sair
-                            </a></li>
+                                    <i class="fas fa-sign-out-alt"></i> Sair
+                                </a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -135,34 +140,34 @@ if (strpos($current_dir, '/admin') !== false || strpos($current_dir, '/clientes'
 </header>
 
 <script>
-// Menu Mobile Toggle
-document.querySelector('.nav-toggle').addEventListener('click', function() {
-    document.querySelector('.nav-menu').classList.toggle('active');
-    this.classList.toggle('active');
-});
+    // Menu Mobile Toggle
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+        document.querySelector('.nav-menu').classList.toggle('active');
+        this.classList.toggle('active');
+    });
 
-// Dropdown Menu
-document.querySelectorAll('.user-menu').forEach(menu => {
-    menu.addEventListener('click', function(e) {
-        e.preventDefault();
-        const dropdown = this.nextElementSibling;
-        dropdown.classList.toggle('active');
-        
-        // Fecha outros dropdowns
-        document.querySelectorAll('.dropdown-menu').forEach(other => {
-            if (other !== dropdown) {
-                other.classList.remove('active');
-            }
+    // Dropdown Menu
+    document.querySelectorAll('.user-menu').forEach(menu => {
+        menu.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.nextElementSibling;
+            dropdown.classList.toggle('active');
+
+            // Fecha outros dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(other => {
+                if (other !== dropdown) {
+                    other.classList.remove('active');
+                }
+            });
         });
     });
-});
 
-// Fecha dropdowns ao clicar fora
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.dropdown')) {
-        document.querySelectorAll('.dropdown-menu').forEach(dropdown => {
-            dropdown.classList.remove('active');
-        });
-    }
-});
+    // Fecha dropdowns ao clicar fora
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        }
+    });
 </script>

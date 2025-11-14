@@ -55,10 +55,12 @@ $modulos = $stmt->fetchAll();
     <meta charset="utf-8">
     <title>Admin Módulos</title>
     <link rel="icon" href="../../ProjetoTech-GitHub/assets/imagens/Generated Image November 02, 2025 - 12_39AM.png" type="image/png">
-
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/modulo_admin.css">
 </head>
 
 <body>
+        <?php include("../acessos/navbar_publico.php");?>
 
     <h1>Módulos do Curso</h1>
     <a href="modulo_admin.php?acao=adicionar&id_curso=<?= $id_curso ?>">+ Adicionar Módulo</a>

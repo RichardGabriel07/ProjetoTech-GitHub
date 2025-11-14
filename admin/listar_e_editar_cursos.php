@@ -18,24 +18,26 @@ if (
 ) {
     // 1. RECEBER OS DADOS
     $nome_curso              = trim($_POST["nome_curso"]);
+    $tipo_curso              = trim($_POST["tipo_curso"]);
     $duracao   = trim($_POST["duracao"]);
     $descricao              = trim($_POST["descricao"]);
 
     // 2. VALIDAR OS DADOS (BUG CORRIGIDO: $noome -> $nome)
-    if (empty($nome_curso) || empty($duracao) || empty($descricao)) {
+    if (empty($nome_curso) || empty($tipo_curso) || empty($duracao) || empty($descricao)) {
         $mensagem = "Por favor, preencha todos os campos obrigatórios.";
     }
 
-    if ($nome_curso && $duracao && $descricao) {
+    if ($nome_curso && $tipo_curso && $duracao && $descricao) {
         // 3. INSERIR NO BANCO DE DADOS
         try {
             // Nota: Os nomes das colunas na tabela (nome, area) devem ser usados no SQL.
-            $sql = "INSERT INTO curso (nome_curso, duracao, descricao) 
-                    VALUES (:nome_curso, :duracao, :descricao)";
+            $sql = "INSERT INTO curso (nome_curso, tipo_curso, duracao, descricao) 
+                    VALUES (:nome_curso, :tipo_curso, :duracao, :descricao)";
             $stmt = $pdo->prepare($sql);
 
             // Usando bindParam:
             $stmt->bindParam(':nome_curso', $nome_curso);
+            $stmt->bindParam(':tipo_curso', $tipo_curso);
             $stmt->bindParam(':duracao', $duracao);
             $stmt->bindParam(':descricao', $descricao);
 
@@ -65,13 +67,14 @@ if (
     'atualizar'
 ) {
     $nome_curso = $_POST["nome_curso"];
+    $tipo_curso = $_POST["tipo_curso"];
     $duracao = $_POST["duracao"];
     $descricao = $_POST["descricao"];
     $id = $_POST['id_curso'];
 
-    $sql = "UPDATE curso SET nome_curso=?, descricao=?, duracao=? WHERE id_curso=?";
+    $sql = "UPDATE curso SET nome_curso=?, tipo_curso=?, descricao=?, duracao=? WHERE id_curso=?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$nome_curso, $descricao, $duracao, $id]);
+    $stmt->execute([$nome_curso, $tipo_curso, $descricao, $duracao, $id]);
 
     // CORREÇÃO PRG
     header("Location: listar_e_editar_cursos.php#box_formulario_cadastro");
@@ -143,6 +146,7 @@ $cursos = $pdo->query($sql)->fetchAll();
             <tr>
                 <th>ID</th>
                 <th>Nome do Curso</th>
+                <th>Modalidade</th>
                 <th>Descrição do Curso</th>
                 <th>Duração</th>
                 <th>Funções</th>
@@ -152,15 +156,17 @@ $cursos = $pdo->query($sql)->fetchAll();
                 <tr>
                     <td> <?php echo $curso['id_curso']; ?></td>
                     <td> <?php echo $curso['nome_curso']; ?></td>
+                    <td> <?php echo $curso['tipo_curso']; ?></td>
                     <td> <?php echo $curso['descricao']; ?></td>
                     <td> <?php echo $curso['duracao']; ?></td>
                     <td>
                         <!-- Botão EDITAR CURSO -->
                         <button
                             onclick="editContact(
-            '<?php echo $curso['id_curso']; ?>', 
-            '<?php echo $curso['nome_curso']; ?>', 
-            '<?php echo $curso['duracao']; ?>', 
+            '<?php echo $curso['id_curso']; ?>',
+            '<?php echo $curso['nome_curso']; ?>',
+            '<?php echo $curso['tipo_curso']; ?>',
+            '<?php echo $curso['duracao']; ?>',
             '<?php echo $curso['descricao']; ?>'
         )">
                             Editar
@@ -169,7 +175,6 @@ $cursos = $pdo->query($sql)->fetchAll();
                         <!-- EXCLUIR CURSO -->
                         <form method="POST" style="display:inline;"
                             onsubmit="return confirm('Tem certeza que deseja excluir o curso <?php echo $curso['nome_curso']; ?>?');">
-
                             <input type="hidden" name="id_curso" value="<?php echo $curso['id_curso']; ?>">
                             <input type="hidden" name="action" value="excluir">
 
@@ -180,13 +185,22 @@ $cursos = $pdo->query($sql)->fetchAll();
                         </form>
 
                         <!-- ✅ NOVO: GERENCIAR MÓDULOS -->
-                        <a href="modulo_admin.php?id_curso=<?php echo $curso['id_curso']; ?>">
-                            <button
-                                style="background-color: #0d6efd; color:white; border:none; padding:5px 10px; cursor:pointer; margin-left:5px;">
+                        <?php if ($curso['tipo_curso'] === 'Online'): ?>
+                            <a href="modulo_admin.php?id_curso=<?php echo $curso['id_curso']; ?>">
+                                <button
+                                    style="background-color: #0d6efd; color:white; border:none; padding:5px 10px; cursor:pointer; margin-left:5px;">
+                                    Módulos
+                                </button>
+                            </a>
+                        <?php else: ?>
+                            <button disabled
+                                title="Módulos disponíveis apenas para cursos Online"
+                                style="background-color: #6c757d; color:white; border:none; padding:5px 10px; margin-left:5px; cursor:not-allowed;">
                                 Módulos
                             </button>
-                        </a>
+                        <?php endif; ?>
                     </td>
+
 
                 </tr>
             <?php endforeach; ?>
@@ -194,26 +208,20 @@ $cursos = $pdo->query($sql)->fetchAll();
     </section>
 
     <script>
-        // Localizada no final do seu arquivo de listagem, dentro da tag <script>
-        function editContact(id, nome_curso, duracao, descricao) {
-            // 1. Preenche o ID e a Ação Ocultos (informa o PHP que é uma atualização)
+        function editContact(id, nome_curso, tipo_curso, duracao, descricao) {
             document.getElementById('id_curso').value = id;
             document.getElementById('action').value = 'atualizar';
 
-            // 2. Preenche os campos visíveis do formulário
             document.getElementById('nome_curso').value = nome_curso;
+            document.getElementById('tipo_curso').value = tipo_curso; // ✅ novo campo
             document.getElementById('duracao').value = duracao;
-
-            // 3. Preenche o Select (o <select> deve ser preenchido pelo value)
             document.getElementById('descricao').value = descricao;
 
-            // 4. Altera o texto do botão para ser intuitivo para o usuário
             document.getElementById('btn_submit').textContent = 'Salvar Alterações';
-
-            // Opcional: Rolagem para o topo para mostrar o formulário preenchido
             window.scrollTo(0, 0);
         }
     </script>
+
 </body>
 
 </html>

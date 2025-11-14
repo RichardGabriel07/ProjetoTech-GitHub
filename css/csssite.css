@@ -448,6 +448,31 @@ main>* {
     .bloco-site {
         padding: 20px 14px;
     }
+
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    #left-side-main h1 {
+        font-size: 1.75rem;
+    }
+
+    #left-side-main p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 /* Seção "Apoiadores" */
 #apoiadores {
@@ -522,4 +547,130 @@ main>* {
 
 .logo-item:hover .logo-title {
     color: var(--secondary-color);
+}
+
+
+/* ==============================================
+    NOVOS ESTILOS ADICIONADOS
+  ==============================================
+*/
+
+/* Classes para Animação de Scroll */
+.hidden-scroll {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(20px);
+    transition: all 1s ease-out;
+}
+
+.visible-scroll {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+/* Estilo do Botão "Voltar ao Topo" */
+#scrollTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#scrollTopBtn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+/* Footer (Novo Estilo) */
+footer {
+    background-color: var(--primary-color);
+    color: #e0e0e0;
+    padding: 3rem 2rem;
+    font-size: 0.95rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-col h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.footer-col h4::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    border-radius: 2px;
+}
+
+.footer-col p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0; /* Garante que o reset seja aplicado */
+}
+
+.footer-col ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-col ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--secondary-color);
+    padding-left: 5px;
+}
+/* ==============================================
+    ESTILOS PARA ÍCONES SOCIAIS
+  ==============================================
+*/
+
+.social-links {
+    display: flex; /* Alinha ícones lado a lado */
+    gap: 1.2rem;   /* Espaço entre os ícones */
+}
+
+.social-links a {
+    color: var(--white); /* Cor do ícone (branco, da sua variável) */
+    font-size: 1.8rem;   /* Tamanho do ícone */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color); /* Cor ao passar o mouse (azul, da sua variável) */
+    transform: translateY(-3px); /* Efeito de "levantar" ao passar o mouse */
 }

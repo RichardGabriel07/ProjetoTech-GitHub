@@ -1,0 +1,138 @@
+/* ===========================
+   ESTILO GERAL
+   =========================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+/* Container principal */
+#box_doacao {
+    width: 100%;
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Títulos */
+#box_doacao h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+#box_doacao p {
+    text-align: center;
+    font-size: 15px;
+    color: #475569;
+    margin-bottom: 25px;
+}
+
+/* ===========================
+   FORMULÁRIO
+   =========================== */
+
+label {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
+    display: block;
+    color: #334155;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    background: #f8fafc;
+    transition: border 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: #ffffff;
+}
+
+/* Botão */
+button {
+    width: 100%;
+    padding: 14px;
+    background: #122A3F;
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, var(#00b4d8) 0%, var(#0096c7) 100%);
+    transform: translateY(-1px);
+}
+
+/* ===========================
+   RESPONSIVIDADE
+   =========================== */
+@media (max-width: 480px) {
+    #box_doacao {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}
+
+#entre-em-contato {
+    background: linear-gradient(90deg, #122A3F 0%, #1e3a5f 100%);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#entre-em-contato::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+}
+
+#entre-em-contato h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+#entre-em-contato p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+}

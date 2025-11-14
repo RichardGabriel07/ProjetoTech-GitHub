@@ -3,7 +3,7 @@
         <main id="box_formulario_cadastro">
             <h2>Cadastre o Curso:</h2>
 
-            <form method="POST" action="./listar_e_editar_cursos.php" class="formulario">
+        <form method="POST"  class="formulario">
                 <input type="hidden" name="id_curso" id="id_curso">
                 <input type="hidden" name="action" id="action" value="incluir">
                 <!-- Campos do formulário -->
@@ -14,10 +14,9 @@
                 </div>
 
                 <div class="input_group">
-                    <label for="tipo_curso">Tipo de Curso:</label>
-                    <select name="tipo_curso" id="tipo_curso">
-                        <option value="" selected disabled>Selecione:</option>
-                        <option value="Presencial">Presencial</option>
+                    <label for="tipo_curso">Modalidade:</label>
+                    <select name="tipo_curso" id="tipo_curso" required>
+                        <option value="Fisico">Físico</option>
                         <option value="Online">Online</option>
                     </select>
                     <br>
